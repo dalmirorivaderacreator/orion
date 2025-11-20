@@ -1,0 +1,41 @@
+{
+  "total_filas": 3,
+  "total_columnas": 3,
+  "columnas": [
+    "Producto",
+    "Cantidad",
+    "Precio"
+  ],
+  "tipos_datos": {
+    "Producto": "object",
+    "Cantidad": "int64",
+    "Precio": "int64"
+  },
+  "estadisticas": {
+    "Cantidad": {
+      "count": 3.0,
+      "mean": 15.0,
+      "std": 5.0,
+      "min": 10.0,
+      "25%": 12.5,
+      "50%": 15.0,
+      "75%": 17.5,
+      "max": 20.0
+    },
+    "Precio": {
+      "count": 3.0,
+      "mean": 3.3333333333333335,
+      "std": 1.5275252316519465,
+      "min": 2.0,
+      "25%": 2.5,
+      "50%": 3.0,
+      "75%": 4.0,
+      "max": 5.0
+    }
+  },
+  "valores_faltantes": {
+    "Producto": 0,
+    "Cantidad": 0,
+    "Precio": 0
+  }
+}

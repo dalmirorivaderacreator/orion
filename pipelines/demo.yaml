@@ -1,0 +1,6 @@
+pipeline:
+  name: demo_csv_pipeline
+  steps:
+    - action: convert_csv_to_json
+      input: data/ventas.csv
+      output: output/ventas_demo.json

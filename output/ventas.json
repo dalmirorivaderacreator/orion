@@ -1,0 +1,17 @@
+[
+    {
+        "Producto": "Manzanas",
+        "Cantidad": 10,
+        "Precio": 5
+    },
+    {
+        "Producto": "Naranjas",
+        "Cantidad": 20,
+        "Precio": 3
+    },
+    {
+        "Producto": "Bananas",
+        "Cantidad": 15,
+        "Precio": 2
+    }
+]
