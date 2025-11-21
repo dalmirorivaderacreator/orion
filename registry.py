@@ -86,16 +86,4 @@ Si no hay función adecuada o no entendés:
 
     return prompt
 
-# Al final de registry.py - importar todos los módulos de funciones
-def _import_all_functions():
-    """Importa todos los módulos de funciones para que se registren"""
-    try:
-        # pylint: disable=unused-import, import-outside-toplevel
-        from functions import data_ops
-        from functions import file_ops
-        print(f"✓ Módulos importados: {len(_function_registry)} funciones registradas")
-    except ImportError as e:
-        print(f"✗ Error importando módulos: {e}")
-
-# Ejecutar la importación automática
-_import_all_functions()
+# Fin de registry.py

@@ -2,6 +2,10 @@ import streamlit as st
 from llm_client import ask_orion
 from dispatcher import dispatch
 from registry import get_available_functions
+# Importar funciones para registro
+# pylint: disable=unused-import
+from functions import data_ops, file_ops
+
 from logger import logger
 
 # Configuración de la página
