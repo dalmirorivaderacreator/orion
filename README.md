@@ -1,10 +1,12 @@
-ORION - Sistema de Ejecución de Lenguaje Natural
+# ORION v2.1 - Sistema de Ejecución de Lenguaje Natural
 
-![Python](https://img.shields.io/badge/Python-3.6%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![IA](https://img.shields.io/badge/IA-LLM%20%2B%20DSL-orange)
 ![Estado](https://img.shields.io/badge/Estado-Production%20Ready-brightgreen)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-Passing-success)
+![Code Quality](https://img.shields.io/badge/Quality-10%2F10-brightgreen)
 
-🚀 ORION es un sistema modular que permite escribir un DSL (lenguaje declarativo simple) para describir tareas de datos y automatización. Un dispatcher interpreta este DSL y ejecuta funciones Python reales, traduciendo instrucciones en lenguaje natural a código ejecutable mediante LLM.
+🚀 **ORION** es un sistema modular que permite escribir un DSL (lenguaje declarativo simple) para describir tareas de datos y automatización. Un dispatcher interpreta este DSL y ejecuta funciones Python reales, traduciendo instrucciones en lenguaje natural a código ejecutable mediante LLM.
 
 ## 🎥 Demo en Vivo
 
@@ -12,126 +14,49 @@ ORION - Sistema de Ejecución de Lenguaje Natural
 
 ![Demo Orion](https://github.com/user-attachments/assets/1a4081a4-36b4-4d79-8110-4829aa2f5b55)
 
+## 🌟 Novedades v2.1
 
-🌟 Flujo Principal
+- **✅ Web UI Moderna**: Interfaz de chat completa construida con Streamlit.
+- **✅ Logging Profesional**: Sistema de logs estructurados en JSON (`logs/orion.log`).
+- **✅ CI/CD Robusto**: Pipeline de GitHub Actions con Pylint (Score 10/10).
+- **✅ Estructura Mejorada**: Organización modular de funciones y DSL.
 
-```
-Texto HUMANO (español) → LLM (traductor) → DSL JSON → DISPATCHER → FUNCIONES PYTHON → RESULTADO REAL
-```
+## 🏗️ Arquitectura del Sistema
 
-🏗️ Arquitectura del Sistema
-
-Estructura de Carpetas
+### Estructura de Carpetas
 
 ```
 orion/
-├── core/                   # Componentes principales del sistema
+├── .github/
+│   └── workflows/          # CI/CD Pipelines
+│       └── ci.yml          # Pylint Workflow
+├── dsl/                    # Definición del Lenguaje
+│   ├── dsl_parser.py       # Parser YAML
+│   └── dsl_spec.py         # Especificación del DSL
+├── functions/              # Módulos de Funciones
 │   ├── __init__.py
-│   ├── registry.py         # Sistema de registro automático
-│   ├── dispatcher.py       # Ejecutor de funciones
-│   └── llmclient.py        # Cliente LLM (Ollama + fallback)
-├── plugins/                # Funciones organizadas por categoría
-│   ├── __init__.py
-│   ├── dataops.py          # Operaciones con datos
-│   ├── fileops.py          # Operaciones con archivos
-│   └── webops.py           # Operaciones web
-├── data/                   # Datos de ejemplo
-│   └── ventas.csv
-├── output/                 # Resultados generados
-├── tests/                  # Tests automatizados
-│   └── test_basic.py
-├── main.py                 # CLI principal
+│   ├── data_ops.py         # Operaciones de Datos (Pandas)
+│   └── file_ops.py         # Operaciones de Archivos
+├── logs/                   # Logs del sistema
+│   └── orion.log
+├── app.py                  # Interfaz Web (Streamlit)
+├── main.py                 # CLI Principal
+├── runner.py               # Ejecutor de Pipelines YAML
+├── llm_client.py           # Cliente LLM (Ollama + Fallback)
+├── dispatcher.py           # Ejecutor de Funciones
+├── registry.py             # Sistema de Registro
+├── logger.py               # Configuración de Logging
 └── requirements.txt        # Dependencias
 ```
 
-🔧 Componentes Detallados
+## 🚀 Instalación Rápida
 
-1. Registry.py - Sistema de Registro Automático
+### Prerrequisitos
 
-```python
-_function_registry = {}  # Diccionario global de funciones
+- Python 3.8 o superior
+- Ollama instalado y ejecutándose (`ollama serve`)
 
-def register_function(name, description, argument_types):  # Decorador
-def get_available_functions():  # Lista funciones
-def get_function(name):  # Obtiene función por nombre
-def build_system_prompt():  # Genera prompt para LLM
-```
-
-2. Dispatcher.py - Ejecutor Dinámico
-
-```python
-def dispatch(function_name: str, arguments: dict):
-    # Busca en registry → ejecuta función → maneja errores
-```
-
-3. LLMClient.py - Cliente LLM Inteligente
-
-```python
-def ask_orion(user_prompt):
-    # Intenta con Ollama (phi3:mini) → timeout 30s
-    # Si falla → usa mock fallback
-    # Parsea y limpia JSON response
-```
-
-📋 Funciones Actualmente Registradas
-
-DataOps.py
-
-```python
-@register_function(
-    name="convert_csv_to_json",
-    description="Convierte un archivo CSV a formato JSON",
-    argument_types={"input_path": "str", "output_path": "str"}
-)
-
-@register_function(
-    name="process_data",
-    description="Filtra y procesa datos de un CSV",
-    argument_types={
-        "input_path": "str",
-        "output_path": "str",
-        "filter_column": "str",
-        "filter_value": "str"
-    }
-)
-
-@register_function(
-    name="analyze_data",
-    description="Genera análisis estadístico de un dataset",
-    argument_types={"input_path": "str", "output_path": "str"}
-)
-```
-
-FileOps.py
-
-```python
-@register_function(
-    name="create_folder",
-    description="Crea una carpeta nueva",
-    argument_types={"path": "str"}
-)
-
-@register_function(
-    name="list_files",
-    description="Lista archivos en una carpeta",
-    argument_types={"path": "str"}
-)
-
-@register_function(
-    name="download_file",
-    description="Descarga un archivo desde una URL",
-    argument_types={"url": "str", "output_path": "str"}
-)
-```
-
-🚀 Instalación Rápida
-
-Prerrequisitos
-
-· Python 3.6 o superior
-· Ollama instalado y ejecutándose
-
-Configuración en 3 Pasos
+### Configuración en 3 Pasos
 
 ```bash
 # 1. Clonar y entrar al directorio
@@ -145,27 +70,27 @@ pip install -r requirements.txt
 ollama pull phi3:mini
 ```
 
-requirements.txt
+### requirements.txt
 
 ```txt
 pandas>=1.3.0
 requests>=2.25.0
+streamlit>=1.30.0
+pyyaml>=6.0
 python-dotenv>=0.19.0
 typing-extensions>=4.0.0
 ```
 
-⚙️ Configuración
+## 🎮 Ejecución
 
-Crea un archivo .env:
+### Opción A: Interfaz Web (Recomendada)
 
-```env
-ORION_LLM_MODEL=phi3:mini
-ORION_TIMEOUT=30
-ORION_LOG_LEVEL=INFO
-ORION_MAX_RETRIES=3
+```bash
+streamlit run app.py
 ```
+Esto abrirá una interfaz moderna en tu navegador donde puedes chatear con ORION.
 
-🎮 Ejecución
+### Opción B: Línea de Comandos (CLI)
 
 ```bash
 # Modo interactivo
@@ -175,199 +100,68 @@ python main.py
 python main.py "crea una carpeta llamada proyectos"
 ```
 
-🧪 Tests
+### Opción C: Ejecutar Pipelines YAML
 
 ```bash
-# Ejecutar tests básicos
-python -m pytest tests/ -v
-
-# Verificar cobertura
-python -m pytest tests/ --cov=orion
-
-# Tests específicos
-python tests/test_basic.py
+python runner.py mi_pipeline.yaml
 ```
 
-💡 Ejemplos de Uso Comprobados
+## 💡 Ejemplos de Uso
 
-Ejemplo 1: Gestión de Archivos
+### Ejemplo 1: Gestión de Archivos
+**Usuario**: "creá una carpeta llamada pruebas"
+**ORION**:
+1. LLM detecta intención.
+2. Ejecuta `create_folder("pruebas")`.
+3. Resultado: "✅ Carpeta creada: pruebas"
 
-```
-USUARIO: "creá una carpeta llamada pruebas"
-LLM: {"CALL": "create_folder", "ARGS": {"path": "pruebas"}}
-DISPATCHER: → ejecuta create_folder("pruebas")
-RESULTADO: "Carpeta creada: pruebas"
-```
+### Ejemplo 2: Análisis de Datos
+**Usuario**: "descargá dataset iris y analizalo"
+**ORION**:
+1. Descarga el archivo desde URL.
+2. Ejecuta `analyze_data`.
+3. Genera reporte JSON en `output/`.
 
-Ejemplo 2: Análisis de Datos Complejo
+## 🛠️ Características Técnicas
 
-```
-USUARIO: "descargá dataset iris y analizalo"
-LLM: {
-  "CALL": "download_file", 
-  "ARGS": {
-    "url": "https://raw.githubusercontent.com/.../iris.csv",
-    "output_path": "data/iris.csv"
-  }
-}
-→ luego →
+### Logging Estructurado
+Cada acción se registra en `logs/orion.log` con formato JSON para fácil auditoría:
+```json
 {
-  "CALL": "analyze_data",
-  "ARGS": {
-    "input_path": "data/iris.csv", 
-    "output_path": "output/analysis.json"
-  }
+  "timestamp": "2025-11-21T18:00:00",
+  "level": "INFO",
+  "message": "Ejecución exitosa",
+  "module": "dispatcher",
+  "function": "dispatch"
 }
-RESULTADO: "Análisis completado: 150 filas × 5 columnas"
 ```
 
-Ejemplo Interactivo
+### Calidad de Código (CI/CD)
+El proyecto cuenta con un pipeline de integración continua que asegura:
+- **Linting estricto**: Pylint 10.00/10.
+- **Cero errores de sintaxis**.
+- **Estilo consistente** (PEP 8).
 
-```python
->>> Bienvenido a ORION v2.0
->>> Ingrese su comando: "analiza ventas.csv y crea un reporte"
->>> Procesando: download_file → analyze_data → create_report
->>> Resultado: Reporte generado en output/analysis_20241205.json
-```
+## 📈 Status del Sistema
 
-🛠️ Características de Robustez Implementadas
+| Componente | Estado | Versión |
+|------------|--------|---------|
+| **Core** | ✅ Estable | 2.1 |
+| **Web UI** | ✅ Implementado | 1.0 |
+| **LLM Client** | ✅ Ollama + Fallback | 2.1 |
+| **CI/CD** | ✅ GitHub Actions | 1.0 |
+| **Logging** | ✅ JSON Structured | 1.0 |
 
-Manejo de Errores Elegante
+## 📦 Metadata
 
-```python
-def dispatch(function_name: str, arguments: dict):
-    # Validación de funciones existentes
-    # Validación de argumentos requeridos  
-    # Manejo específico por tipo de error
-    # Mensajes de error claros para humanos
-```
-
-Validación Estricta de JSON
-
-```python
-def _validate_and_clean_json(response_text):
-    # Limpieza de code blocks
-    # Validación de estructura
-    # Forzado de formato ORION
-    # Fallback seguro a {CALL: null}
-```
-
-Fallback Inteligente Contextual
-
-```python
-def _smart_fallback(user_prompt):
-    # Análisis semántico del prompt
-    # Valores por defecto inteligentes
-    # Archivos conocidos (data/ventas.csv)
-    # Rutas relativas seguras
-```
-
-🎨 Principios de Diseño
-
-· Modularidad: Funciones se auto-registran, cero configuración
-· Robustez: Funciona con/sin LLM, con/sin funciones específicas
-· Escalabilidad: Agregar funciones = decorador + implementación
-· UX Natural: Lenguaje humano → resultados reales
-· Extensibilidad: Fácil agregar nuevos tipos de operaciones
-
-🚀 Contribuir en 5 Minutos
-
-Agregar Nueva Función
-
-```python
-# En plugins/yourops.py
-@register_function(
-    name="send_email",
-    description="Envía un correo electrónico",
-    argument_types={"to": "str", "subject": "str", "body": "str"}
-)
-def send_email(to: str, subject: str, body: str):
-    # Tu implementación aquí
-    return f"Email enviado a {to}"
-```
-
-El sistema detecta automáticamente la nueva función. ¡Ya puedes decir "envía un email a prueba@test.com"!
-
-🔍 Solución de Problemas
-
-Ollama no responde
-
-```bash
-# Verificar servicio
-ollama list
-# Reiniciar servicio
-ollama serve
-```
-
-Error de importación
-
-```bash
-pip install --upgrade pandas requests
-```
-
-JSON malformado
-
-El sistema usa fallback automático. Verifique que Ollama esté usando el modelo correcto.
-
-Timeout en LLM
-
-```bash
-# Verificar que Ollama esté corriendo
-curl http://localhost:11434/api/tags
-```
-
-📈 Status del Sistema
-
-· Registry: 6 funciones registradas
-· Dispatcher: Ejecución estable
-· LLM Client: Ollama + Fallback operativo
-· Sistema de Tests: Básico implementado
-· Context Manager: En desarrollo
-· Web UI: Planeado
-· Plugin System: En diseño
-
-🔮 Roadmap
-
-Corto Plazo (1-2 horas)
-
-· Sistema de logging para auditoría
-· Variables de contexto entre comandos
-· 2-3 funciones más (email, plots, DB)
-
-Medio Plazo (1 día)
-
-· Interface web simple
-· Pipelines multi-step
-· Templates de flujos comunes
-
-Largo Plazo
-
-· Agente autónomo con memoria
-· Plugins de terceros
-· Deployment cloud
-
-📊 Estado Actual Comprobado
-
-✅ 5+ funciones registradas y operativas
-✅ Validación JSON 100% robusta
-✅ Manejo de errores elegante
-✅ Fallback inteligente cuando LLM falla
-✅ Análisis de datos profesional implementado
-✅ Pipeline confiable de extremo a extremo
-✅ Sistema de tests básico funcionando
-
-📦 Metadata
-
-· Versión: 2.0.0
-· Autor: Dalmiro Rivadera
-· Licencia: MIT
-· Repositorio: https://github.com/dalmirorivaderacreator/orion
-· Última Actualización: Noviembre 2025
+- **Versión**: 2.1.0
+- **Autor**: Dalmiro Rivadera
+- **Licencia**: MIT
+- **Repositorio**: https://github.com/dalmirorivaderacreator/orion
+- **Última Actualización**: Noviembre 2025
 
 ---
 
-ORION v2.0 - Transformando lenguaje natural en ejecución real desde 2025.
-
-¿Problemas? Consulta la sección Solución de Problemas o abre un issue en el repositorio.
+**ORION v2.1** - Transformando lenguaje natural en ejecución real.
 
 ¿Te sirvió ORION? ¡Dale una ⭐ en GitHub!
