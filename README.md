@@ -6,6 +6,13 @@ ORION - Sistema de Ejecución de Lenguaje Natural
 
 🚀 ORION es un sistema modular que permite escribir un DSL (lenguaje declarativo simple) para describir tareas de datos y automatización. Un dispatcher interpreta este DSL y ejecuta funciones Python reales, traduciendo instrucciones en lenguaje natural a código ejecutable mediante LLM.
 
+## 🎥 Demo en Vivo
+
+![ORION Web UI Demo](orion_demo.gif)
+
+![Demo Orion](https://github.com/user-attachments/assets/1a4081a4-36b4-4d79-8110-4829aa2f5b55)
+
+
 🌟 Flujo Principal
 
 ```
