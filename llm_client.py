@@ -2,9 +2,9 @@ import requests
 import json
 import sys
 import os
-
-sys.path.append(os.path.dirname(__file__))
 from registry import get_available_functions, build_system_prompt
+from logger import logger
+
 def _validate_and_clean_json(response_text):
     """Valida y limpia el JSON del LLM, forzando el formato correcto"""
     try:
@@ -22,10 +22,12 @@ def _validate_and_clean_json(response_text):
         
         # Validar estructura básica
         if not isinstance(data, dict):
+            logger.warning("JSON parseado no es dict", extra={"extra_data": {"parsed": data}})
             return {"CALL": None, "ARGS": {}}
             
         # Forzar formato ORION
         if "CALL" not in data:
+            logger.warning("JSON falta key CALL", extra={"extra_data": {"keys": list(data.keys())}})
             return {"CALL": None, "ARGS": {}}
             
         # Asegurar que ARGS es un dict
@@ -34,8 +36,8 @@ def _validate_and_clean_json(response_text):
             
         return data
         
-    except (json.JSONDecodeError, KeyError, TypeError):
-        # Si falla el parsing, devolver formato vacío
+    except (json.JSONDecodeError, KeyError, TypeError) as e:
+        logger.error(f"Error validando JSON: {e}", extra={"extra_data": {"raw_text": response_text}})
         return {"CALL": None, "ARGS": {}}
     
 def ask_orion(user_prompt):
@@ -43,6 +45,7 @@ def ask_orion(user_prompt):
     Intenta con Ollama, si falla usa fallback inteligente
     """
     try:
+        logger.debug("Enviando request a Ollama...")
         # Intento con Ollama real
         response = requests.post(
             'http://localhost:11434/api/generate',
@@ -60,6 +63,8 @@ def ask_orion(user_prompt):
             result = response.json()
             response_text = result['response'].strip()
             
+            logger.debug("Respuesta raw Ollama recibida", extra={"extra_data": {"response_length": len(response_text)}})
+            
             # Limpiar posibles code blocks
             if response_text.startswith('```json'):
                 response_text = response_text[7:-3].strip()
@@ -68,13 +73,16 @@ def ask_orion(user_prompt):
             
             parsed = _validate_and_clean_json(response_text)
             print(f"🔍 LLM respondió (validado): {parsed}")
+            logger.info("LLM interpretó comando", extra={"extra_data": {"parsed": parsed}})
             return parsed
             
         else:
+            logger.error(f"Ollama error HTTP {response.status_code}")
             raise Exception(f"HTTP {response.status_code}")
             
     except Exception as e:
         print(f"⚠️  Ollama no disponible ({e}), usando fallback inteligente...")
+        logger.warning(f"Fallo Ollama ({e}), activando Smart Fallback")
         return _smart_fallback(user_prompt)
 
 def _smart_fallback(user_prompt):
