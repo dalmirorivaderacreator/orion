@@ -1,8 +1,7 @@
-import requests
 import json
-import sys
 import os
-from registry import get_available_functions, build_system_prompt
+import requests
+from registry import build_system_prompt
 from logger import logger
 
 def _validate_and_clean_json(response_text):
@@ -10,36 +9,39 @@ def _validate_and_clean_json(response_text):
     try:
         # Limpiar el texto
         text = response_text.strip()
-        
+
         # Remover code blocks
         if text.startswith('```json'):
             text = text[7:-3].strip()
         elif text.startswith('```'):
             text = text[3:-3].strip()
-        
+
         # Parsear JSON
         data = json.loads(text)
-        
+
         # Validar estructura básica
         if not isinstance(data, dict):
             logger.warning("JSON parseado no es dict", extra={"extra_data": {"parsed": data}})
             return {"CALL": None, "ARGS": {}}
-            
+
         # Forzar formato ORION
         if "CALL" not in data:
             logger.warning("JSON falta key CALL", extra={"extra_data": {"keys": list(data.keys())}})
             return {"CALL": None, "ARGS": {}}
-            
+
         # Asegurar que ARGS es un dict
         if "ARGS" not in data or not isinstance(data["ARGS"], dict):
             data["ARGS"] = {}
-            
+
         return data
-        
+
     except (json.JSONDecodeError, KeyError, TypeError) as e:
-        logger.error(f"Error validando JSON: {e}", extra={"extra_data": {"raw_text": response_text}})
+        logger.error(
+            "Error validando JSON: %s", e,
+            extra={"extra_data": {"raw_text": response_text}}
+        )
         return {"CALL": None, "ARGS": {}}
-    
+
 def ask_orion(user_prompt):
     """
     Intenta con Ollama, si falla usa fallback inteligente
@@ -58,37 +60,39 @@ def ask_orion(user_prompt):
             },
             timeout=30
         )
-        
+
         if response.status_code == 200:
             result = response.json()
             response_text = result['response'].strip()
-            
-            logger.debug("Respuesta raw Ollama recibida", extra={"extra_data": {"response_length": len(response_text)}})
-            
+
+            logger.debug(
+                "Respuesta raw Ollama recibida",
+                extra={"extra_data": {"response_length": len(response_text)}}
+            )
+
             # Limpiar posibles code blocks
             if response_text.startswith('```json'):
                 response_text = response_text[7:-3].strip()
             elif response_text.startswith('```'):
                 response_text = response_text[3:-3].strip()
-            
+
             parsed = _validate_and_clean_json(response_text)
             print(f"🔍 LLM respondió (validado): {parsed}")
             logger.info("LLM interpretó comando", extra={"extra_data": {"parsed": parsed}})
             return parsed
-            
-        else:
-            logger.error(f"Ollama error HTTP {response.status_code}")
-            raise Exception(f"HTTP {response.status_code}")
-            
+
+        logger.error("Ollama error HTTP %s", response.status_code)
+        raise RuntimeError(f"HTTP {response.status_code}")
+
     except Exception as e:
         print(f"⚠️  Ollama no disponible ({e}), usando fallback inteligente...")
-        logger.warning(f"Fallo Ollama ({e}), activando Smart Fallback")
+        logger.warning("Fallo Ollama (%s), activando Smart Fallback", e)
         return _smart_fallback(user_prompt)
 
 def _smart_fallback(user_prompt):
     """Fallback más inteligente que entiende contexto"""
     prompt_lower = user_prompt.lower()
-    
+
     # CREAR CARPETA
     if any(word in prompt_lower for word in ['carpeta', 'folder', 'directorio', 'mkdir']):
         folder_name = "carpeta_nueva"
@@ -98,18 +102,18 @@ def _smart_fallback(user_prompt):
                 folder_name = words[i + 1]
                 break
         return {"CALL": "create_folder", "ARGS": {"path": folder_name}}
-    
+
     # LISTAR ARCHIVOS
-    elif any(word in prompt_lower for word in ['lista', 'archivos', 'files', 'ls', 'dir']):
+    if any(word in prompt_lower for word in ['lista', 'archivos', 'files', 'ls', 'dir']):
         path = "."
         if 'data' in prompt_lower:
             path = "data"
         elif 'output' in prompt_lower:
             path = "output"
         return {"CALL": "list_files", "ARGS": {"path": path}}
-    
+
     # CONVERTIR CSV - SIEMPRE usar archivo conocido
-    elif any(word in prompt_lower for word in ['convert', 'csv', 'json']):
+    if any(word in prompt_lower for word in ['convert', 'csv', 'json']):
         return {
             "CALL": "convert_csv_to_json",
             "ARGS": {
@@ -117,13 +121,13 @@ def _smart_fallback(user_prompt):
                 "output_path": "output/ventas.json"
             }
         }
-    
+
     # ANALIZAR DATOS - NUEVO CASO
-    elif any(word in prompt_lower for word in ['analiz', 'analyze', 'estadistic', 'metric']):
+    if any(word in prompt_lower for word in ['analiz', 'analyze', 'estadistic', 'metric']):
         input_file = "data/ventas.csv"  # default
         if 'iris' in prompt_lower:
             input_file = "data/iris.csv"
-            
+
         return {
             "CALL": "analyze_data",
             "ARGS": {
@@ -131,6 +135,5 @@ def _smart_fallback(user_prompt):
                 "output_path": f"output/analisis_{os.path.basename(input_file)}.json"
             }
         }
-    
-    else:
-        return {"CALL": None, "ARGS": {}}
+
+    return {"CALL": None, "ARGS": {}}

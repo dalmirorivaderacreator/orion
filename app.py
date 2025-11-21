@@ -1,6 +1,4 @@
 import streamlit as st
-import json
-import os
 from llm_client import ask_orion
 from dispatcher import dispatch
 from registry import get_available_functions
@@ -43,7 +41,7 @@ with st.sidebar:
         with st.expander(f"🔹 {name}"):
             st.markdown(f"**Descripción:** {info['description']}")
             st.code(f"Args: {list(info['argument_types'].keys())}", language="json")
-            
+
     st.divider()
     st.info("💡 ORION v2.0 - Running on LocalHost")
 
@@ -73,29 +71,29 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
-        
+
     # 2. Procesar con ORION
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         message_placeholder.markdown("🧠 *Pensando y analizando solicitud...*")
-        
+
         try:
             # Llamada al LLM
             call_data = ask_orion(prompt)
-            
+
             if call_data['CALL']:
                 # Mostrar intención detectada
                 st.success(f"🎯 Intención detectada: `{call_data['CALL']}`")
                 with st.expander("🔍 Ver Argumentos Extraídos"):
                     st.json(call_data['ARGS'])
-                
+
                 # Ejecutar acción
                 message_placeholder.markdown("⚙️ *Ejecutando acción segura...*")
                 result = dispatch(call_data['CALL'], call_data['ARGS'])
-                
+
                 # Mostrar resultado final
                 message_placeholder.markdown("✅ **Ejecución Completada**")
-                
+
                 if isinstance(result, str):
                     if result.startswith("✅"):
                         st.success(result)
@@ -105,23 +103,26 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
                         st.markdown(result)
                 else:
                     st.json(result)
-                
+
                 # Guardar en historial
                 st.session_state.messages.append({
-                    "role": "assistant", 
+                    "role": "assistant",
                     "content": f"Ejecuté `{call_data['CALL']}` exitosamente.",
                     "result": result
                 })
-                
-                logger.info("Interacción Web exitosa", extra={"extra_data": {"prompt": prompt, "call": call_data}})
-                
+
+                logger.info(
+                    "Interacción Web exitosa",
+                    extra={"extra_data": {"prompt": prompt, "call": call_data}}
+                )
+
             else:
                 message_placeholder.error("❌ No pude interpretar esa instrucción.")
                 st.session_state.messages.append({
-                    "role": "assistant", 
+                    "role": "assistant",
                     "content": "No pude interpretar esa instrucción. Intenta ser más específico."
                 })
-                
+
         except Exception as e:
             message_placeholder.error(f"💥 Error crítico: {str(e)}")
-            logger.error(f"Error en Web UI: {e}", exc_info=True)
+            logger.error("Error en Web UI: %s", e, exc_info=True)
