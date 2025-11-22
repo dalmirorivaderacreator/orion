@@ -41,3 +41,24 @@ def download_file(url, output_path):
         f.write(response.content)
 
     return f"Archivo descargado: {output_path} ({(len(response.content))} bytes)"
+
+@register_function(
+    name="create_file",
+    description="Crea un archivo con contenido opcional",
+    argument_types={"path": "str", "content": "str"}
+)
+def create_file(path, content=""):
+    """Crea un archivo en la ruta especificada con el contenido dado."""
+    if content is None:
+        content = ""
+    dirname = os.path.dirname(path)
+    if dirname:
+        os.makedirs(dirname, exist_ok=True)
+
+
+
+
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    return f"Archivo creado: {path} ({len(content)} caracteres)"

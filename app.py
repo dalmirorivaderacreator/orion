@@ -4,9 +4,10 @@ from dispatcher import dispatch
 from registry import get_available_functions
 # Importar funciones para registro
 # pylint: disable=unused-import
-from functions import data_ops, file_ops
-
+from functions import data_ops, file_ops, system_ops
+from context import ContextManager
 from logger import logger
+
 
 # Configuración de la página
 st.set_page_config(
@@ -49,9 +50,12 @@ with st.sidebar:
     st.divider()
     st.info("💡 ORION v2.0 - Running on LocalHost")
 
-# Inicializar historial de chat
+# Inicializar historial y contexto
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+if "context" not in st.session_state:
+    st.session_state.context = ContextManager()
 
 # Mostrar mensajes previos
 for message in st.session_state.messages:
@@ -83,7 +87,7 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
 
         try:
             # Llamada al LLM
-            call_data = ask_orion(prompt)
+            call_data = ask_orion(prompt, st.session_state.context)
 
             if call_data['CALL']:
                 # Mostrar intención detectada
@@ -93,7 +97,7 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
 
                 # Ejecutar acción
                 message_placeholder.markdown("⚙️ *Ejecutando acción segura...*")
-                result = dispatch(call_data['CALL'], call_data['ARGS'])
+                result = dispatch(call_data['CALL'], call_data['ARGS'], st.session_state.context)
 
                 # Mostrar resultado final
                 message_placeholder.markdown("✅ **Ejecución Completada**")

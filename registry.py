@@ -24,7 +24,7 @@ def get_function(name):
     """Devuelve una función por nombre"""
     return _function_registry.get(name)
 
-def build_system_prompt():
+def build_system_prompt(context_string=""):
     """Construye el system prompt con instrucciones más estrictas"""
     functions = get_available_functions()
 
@@ -33,19 +33,10 @@ def build_system_prompt():
         "y las traduce en acciones programables.\n"
     )
 
+    if context_string:
+        prompt += context_string + "\n"
+
     prompt += """
-**REGLAS ESTRICTAS:**
-
-1. **SOLO puedes usar las funciones listadas abajo**
-2. **NO inventes nombres de funciones**
-3. **NO inventes rutas** - usa rutas relativas simples como "data/", "output/", "."
-4. **Todos los argumentos son OBLIGATORIOS**
-5. **Responde EXCLUSIVAMENTE en formato JSON:**
-
-{
-  "CALL": "nombre_funcion_exacto",
-  "ARGS": {
-    "param1": "valor_real",
     "param2": "valor_real"
   }
 }
@@ -66,8 +57,12 @@ Si no hay función adecuada o no entendés:
         )
 
     prompt += "\n\n**EJEMPLOS CORRECTOS:**"
+    prompt += '\nUsuario: "qué puedes hacer?" o "qué funciones tienes?"'
+    prompt += '\nTú: {"CALL": "get_capabilities", "ARGS": {}}'
+
     prompt += '\nUsuario: "creá una carpeta llamada documentos"'
     prompt += '\nTú: {"CALL": "create_folder", "ARGS": {"path": "documentos"}}'
+
 
     prompt += '\nUsuario: "listá los archivos en data"'
     prompt += '\nTú: {"CALL": "list_files", "ARGS": {"path": "data"}}'

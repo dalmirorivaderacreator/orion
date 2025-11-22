@@ -42,24 +42,29 @@ def _validate_and_clean_json(response_text):
         )
         return {"CALL": None, "ARGS": {}}
 
-def ask_orion(user_prompt):
+def ask_orion(user_prompt, context_manager=None):
     """
     Intenta con Ollama, si falla usa fallback inteligente
     """
+
     try:
         logger.debug("Enviando request a Ollama...")
+        # Obtener contexto si existe
+        context_str = context_manager.get_context_string() if context_manager else ""
+
         # Intento con Ollama real
         response = requests.post(
             'http://localhost:11434/api/generate',
             json={
                 "model": "phi3:mini",
                 "prompt": user_prompt,
-                "system": build_system_prompt(),
+                "system": build_system_prompt(context_str),
                 "stream": False,
                 "format": "json"  # <-- FORZAR JSON
             },
             timeout=30
         )
+
 
         if response.status_code == 200:
             result = response.json()

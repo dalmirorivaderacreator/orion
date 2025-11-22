@@ -1,15 +1,26 @@
 from registry import get_function
+from utils import normalize_path
+
 
 # pylint: disable=too-many-return-statements
-def dispatch(function_name: str, arguments: dict):
+def dispatch(function_name: str, arguments: dict, context_manager=None):
     """
     Ejecuta funciones registradas con manejo elegante de errores
     """
+
     # Normalizar nombres de argumentos del DSL
     if "input" in arguments:
         arguments["input_path"] = arguments.pop("input")
     if "output" in arguments:
         arguments["output_path"] = arguments.pop("output")
+
+    # Normalizar rutas en los argumentos
+    for key, value in arguments.items():
+        if isinstance(value, str) and ("path" in key or key == "url"):
+            # No normalizar URLs, solo rutas locales
+            if key != "url":
+                arguments[key] = normalize_path(value)
+
 
     try:
         # Buscar la función en el registro
@@ -34,7 +45,13 @@ def dispatch(function_name: str, arguments: dict):
 
         # Ejecutar la función real
         result = function_info['function'](**arguments)
+
+        # Actualizar contexto si existe el manager
+        if context_manager:
+            context_manager.infer_update(function_name, arguments, result)
+
         return f"✅ {result}"
+
 
     except FileNotFoundError as e:
         return f"❌ Archivo no encontrado: {str(e)}"
