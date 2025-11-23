@@ -1,10 +1,11 @@
+import database
+from context import ContextManager
+from llm_client import _preprocess_prompt
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from llm_client import _preprocess_prompt
-from context import ContextManager
-import database
+
 
 class TestPreprocessor(unittest.TestCase):
     def setUp(self):
@@ -19,15 +20,16 @@ class TestPreprocessor(unittest.TestCase):
         if os.path.exists(self.test_db):
             os.remove(self.test_db)
 
-
     def test_folder_replacement(self):
         prompts = [
             ("listá archivos en esa carpeta", "listá archivos en test_folder"),
             ("ponelo ahí", "ponelo test_folder"),
-            ("listá archivos en el directorio", "listá archivos en el directorio"), # No match pattern
+            ("listá archivos en el directorio",
+             "listá archivos en el directorio"),
+            # No match pattern
             ("listá archivos en ese directorio", "listá archivos en test_folder")
         ]
-        
+
         for original, expected in prompts:
             result = _preprocess_prompt(original, self.cm)
             self.assertEqual(result, expected)
@@ -37,10 +39,11 @@ class TestPreprocessor(unittest.TestCase):
             ("borrá ese archivo", "borrá test_file.txt"),
             ("procesá ese documento", "procesá test_file.txt")
         ]
-        
+
         for original, expected in prompts:
             result = _preprocess_prompt(original, self.cm)
             self.assertEqual(result, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

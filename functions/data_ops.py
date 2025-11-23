@@ -6,6 +6,7 @@ import os
 import pandas as pd
 from registry import register_function
 
+
 @register_function(
     name="convert_csv_to_json",
     description="Convierte un archivo CSV a formato JSON",
@@ -22,6 +23,7 @@ def convert_csv_to_json(input_path, output_path):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
     return f"{input_path} convertido a JSON en {output_path}"
+
 
 @register_function(
     name="analyze_data",

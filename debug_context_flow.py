@@ -1,38 +1,38 @@
+from registry import build_system_prompt
+from context import ContextManager
+import database
 import os
 import sys
 sys.path.append(os.path.dirname(__file__))
 
-import database
-from context import ContextManager
-from registry import build_system_prompt
 
 def debug_flow():
     print("=== DEBUGGING CONTEXT FLOW ===")
-    
+
     # 1. Init DB
     database.init_db()
-    
+
     # 2. Init ContextManager
     cm = ContextManager()
     print(f"Initial Context: {cm.context}")
-    
+
     # 3. Simulate Update
     print("\nUpdating context with last_folder='debug_folder'...")
     cm.update("last_folder", "debug_folder")
-    
+
     # 4. Check Context String
     ctx_str = cm.get_context_string()
     print(f"\nContext String from Manager:\n---\n{ctx_str}\n---")
-    
+
     if "debug_folder" not in ctx_str:
         print("FAIL: 'debug_folder' not found in context string!")
     else:
         print("PASS: Context string contains updated value.")
-        
+
     # 5. Check System Prompt
     sys_prompt = build_system_prompt(ctx_str)
     print(f"\nSystem Prompt (Snippet):\n---\n{sys_prompt[:500]}...\n---")
-    
+
     if "**CONTEXTO ACTUAL (VARIABLES):**" in sys_prompt and "debug_folder" in sys_prompt:
         print("PASS: System prompt contains context section and value.")
     else:

@@ -4,11 +4,13 @@ Módulo para manejar el contexto de la sesión (memoria a corto plazo).
 
 import database
 
+
 class ContextManager:
     """
     Gestiona variables de contexto que persisten entre comandos.
     Ej: última carpeta creada, último archivo descargado.
     """
+
     def __init__(self):
         # Inicializar DB y cargar contexto previo
         database.init_db()
@@ -26,7 +28,6 @@ class ContextManager:
         if key in self.context:
             self.context[key] = value
             database.save_context({key: value})
-
 
     def get_context_string(self):
         """Devuelve un string formateado para el System Prompt."""

@@ -1,11 +1,11 @@
+from context import ContextManager
+from functions.file_ops import create_file
 import unittest
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-from functions.file_ops import create_file
 
-from context import ContextManager
 
 class TestCreateFile(unittest.TestCase):
     def setUp(self):
@@ -33,11 +33,11 @@ class TestCreateFile(unittest.TestCase):
         with open(self.test_file, "r", encoding="utf-8") as f:
             self.assertEqual(f.read(), content)
 
-
     def test_context_update(self):
         cm = ContextManager()
         cm.infer_update("create_file", {"path": self.test_file}, "Created")
         self.assertEqual(cm.context["last_file"], self.test_file)
+
 
 if __name__ == '__main__':
     unittest.main()

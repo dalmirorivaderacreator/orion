@@ -12,8 +12,6 @@ from logger import logger
 load_dotenv()
 
 
-
-
 # Configuración de la página
 st.set_page_config(
     page_title="ORION - AI Data Assistant",
@@ -50,7 +48,9 @@ with st.sidebar:
     for name, info in functions.items():
         with st.expander(f"🔹 {name}"):
             st.markdown(f"**Descripción:** {info['description']}")
-            st.code(f"Args: {list(info['argument_types'].keys())}", language="json")
+            st.code(
+                f"Args: {list(info['argument_types'].keys())}",
+                language="json")
 
     st.divider()
     st.info("💡 ORION v2.0 - Running on LocalHost")
@@ -101,8 +101,12 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
                     st.json(call_data['ARGS'])
 
                 # Ejecutar acción
-                message_placeholder.markdown("⚙️ *Ejecutando acción segura...*")
-                result = dispatch(call_data['CALL'], call_data['ARGS'], st.session_state.context)
+                message_placeholder.markdown(
+                    "⚙️ *Ejecutando acción segura...*")
+                result = dispatch(
+                    call_data['CALL'],
+                    call_data['ARGS'],
+                    st.session_state.context)
 
                 # Mostrar resultado final
                 message_placeholder.markdown("✅ **Ejecución Completada**")
@@ -130,7 +134,8 @@ if prompt := st.chat_input("¿Qué tarea querés ejecutar hoy?"):
                 )
 
             else:
-                message_placeholder.error("❌ No pude interpretar esa instrucción.")
+                message_placeholder.error(
+                    "❌ No pude interpretar esa instrucción.")
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": "No pude interpretar esa instrucción. Intenta ser más específico."

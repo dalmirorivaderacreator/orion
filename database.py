@@ -7,9 +7,11 @@ from datetime import datetime
 
 DB_NAME = "orion.db"
 
+
 def get_connection():
     """Establece conexión con la base de datos."""
     return sqlite3.connect(DB_NAME)
+
 
 def init_db():
     """Inicializa las tablas de la base de datos si no existen."""
@@ -49,6 +51,7 @@ def init_db():
 
 # --- Operaciones de Contexto ---
 
+
 def save_context(context_data: dict):
     """Guarda el diccionario de contexto en la base de datos."""
     conn = get_connection()
@@ -63,6 +66,7 @@ def save_context(context_data: dict):
 
     conn.commit()
     conn.close()
+
 
 def load_context() -> dict:
     """Carga el contexto guardado."""
@@ -81,6 +85,7 @@ def load_context() -> dict:
 
 # --- Operaciones de Historial ---
 
+
 def add_history(command: str, result: str):
     """Registra un comando ejecutado en el historial."""
     conn = get_connection()
@@ -93,6 +98,7 @@ def add_history(command: str, result: str):
 
     conn.commit()
     conn.close()
+
 
 def get_last_command():
     """Obtiene el último comando ejecutado."""
@@ -112,6 +118,7 @@ def get_last_command():
 
 # --- Operaciones de Preferencias ---
 
+
 def set_preference(key: str, value: str):
     """Guarda una preferencia de usuario."""
     conn = get_connection()
@@ -124,6 +131,7 @@ def set_preference(key: str, value: str):
 
     conn.commit()
     conn.close()
+
 
 def get_preference(key: str):
     """Obtiene una preferencia por su clave."""

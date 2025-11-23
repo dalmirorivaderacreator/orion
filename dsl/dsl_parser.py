@@ -14,6 +14,7 @@ from dsl.dsl_spec import (
 class DSLValidationError(Exception):
     """Excepción personalizada para errores de validación del DSL."""
 
+
 def load_dsl(path: str) -> dict:
     """Carga un YAML de pipeline y lo devuelve como dict."""
     try:
@@ -49,7 +50,8 @@ def validate_steps(steps: list):
         if op_name == "convert_type":
             to_type = step[op_name]["to"]
             if to_type not in TYPE_CASTS:
-                raise DSLValidationError(f"Tipo invalido para convert_type: {to_type}")
+                raise DSLValidationError(
+                    f"Tipo invalido para convert_type: {to_type}")
 
 
 def validate_dsl(dsl: dict):

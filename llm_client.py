@@ -4,6 +4,7 @@ import requests
 from registry import build_system_prompt
 from logger import logger
 
+
 def _validate_and_clean_json(response_text):
     """Valida y limpia el JSON del LLM, forzando el formato correcto"""
     try:
@@ -21,12 +22,19 @@ def _validate_and_clean_json(response_text):
 
         # Validar estructura básica
         if not isinstance(data, dict):
-            logger.warning("JSON parseado no es dict", extra={"extra_data": {"parsed": data}})
+            logger.warning(
+                "JSON parseado no es dict", extra={
+                    "extra_data": {
+                        "parsed": data}})
             return {"CALL": None, "ARGS": {}}
 
         # Forzar formato ORION
         if "CALL" not in data:
-            logger.warning("JSON falta key CALL", extra={"extra_data": {"keys": list(data.keys())}})
+            logger.warning(
+                "JSON falta key CALL", extra={
+                    "extra_data": {
+                        "keys": list(
+                            data.keys())}})
             return {"CALL": None, "ARGS": {}}
 
         # Asegurar que ARGS es un dict
@@ -41,6 +49,7 @@ def _validate_and_clean_json(response_text):
             extra={"extra_data": {"raw_text": response_text}}
         )
         return {"CALL": None, "ARGS": {}}
+
 
 def ask_orion(user_prompt, context_manager=None):
     """
@@ -68,7 +77,6 @@ def ask_orion(user_prompt, context_manager=None):
             timeout=30
         )
 
-
         if response.status_code == 200:
             result = response.json()
             response_text = result['response'].strip()
@@ -86,60 +94,73 @@ def ask_orion(user_prompt, context_manager=None):
 
             parsed = _validate_and_clean_json(response_text)
             print(f"🔍 LLM respondió (validado): {parsed}")
-            logger.info("LLM interpretó comando", extra={"extra_data": {"parsed": parsed}})
+            logger.info(
+                "LLM interpretó comando", extra={
+                    "extra_data": {
+                        "parsed": parsed}})
             return parsed
 
         logger.error("Ollama error HTTP %s", response.status_code)
         raise RuntimeError(f"HTTP {response.status_code}")
 
     except Exception as e:
-        print(f"⚠️  Ollama no disponible ({e}), usando fallback inteligente...")
+        print(
+            f"⚠️  Ollama no disponible ({e}), usando fallback inteligente...")
         logger.warning("Fallo Ollama (%s), activando Smart Fallback", e)
         return _smart_fallback(user_prompt, context_manager)
 
+
 def _preprocess_prompt(user_prompt, context_manager):
     """
-    Reemplaza referencias contextuales ("esa carpeta", "ahí") 
+    Reemplaza referencias contextuales ("esa carpeta", "ahí")
     con los valores reales ANTES de enviar al LLM.
     """
     if not context_manager:
         return user_prompt
-    
+
     import re
     processed_prompt = user_prompt
     ctx = context_manager.context
-    
+
     # 1. Reemplazar referencias a CARPETA
     if ctx.get("last_folder"):
         folder = ctx["last_folder"]
         # Variaciones comunes
         patterns = [
-            r"\besa carpeta\b", 
-            r"\bese directorio\b", 
-            r"\bahí\b", 
+            r"\besa carpeta\b",
+            r"\bese directorio\b",
+            r"\bahí\b",
             r"\ballí\b",
             r"\ben la carpeta\b"
         ]
         for pattern in patterns:
-            processed_prompt = re.sub(pattern, folder, processed_prompt, flags=re.IGNORECASE)
+            processed_prompt = re.sub(
+                pattern, folder, processed_prompt, flags=re.IGNORECASE)
 
     # 2. Reemplazar referencias a ARCHIVO
     if ctx.get("last_file"):
         file_path = ctx["last_file"]
         patterns = [
-            r"\bese archivo\b", 
+            r"\bese archivo\b",
             r"\bese documento\b",
             r"\bel archivo generado\b"
         ]
         for pattern in patterns:
-            processed_prompt = re.sub(pattern, file_path, processed_prompt, flags=re.IGNORECASE)
-            
+            processed_prompt = re.sub(
+                pattern,
+                file_path,
+                processed_prompt,
+                flags=re.IGNORECASE)
+
     if processed_prompt != user_prompt:
-        logger.info("Prompt pre-procesado: '%s' -> '%s'", user_prompt, processed_prompt)
+        logger.info(
+            "Prompt pre-procesado: '%s' -> '%s'",
+            user_prompt,
+            processed_prompt)
         print(f"Contexto aplicado: '{user_prompt}' -> '{processed_prompt}'")
 
-        
     return processed_prompt
+
 
 def _smart_fallback(user_prompt, context_manager=None):
     """Fallback más inteligente que entiende contexto"""
@@ -148,17 +169,31 @@ def _smart_fallback(user_prompt, context_manager=None):
     prompt_lower = user_prompt.lower()
 
     # CREAR CARPETA
-    if any(word in prompt_lower for word in ['carpeta', 'folder', 'directorio', 'mkdir']):
+    if any(
+        word in prompt_lower for word in [
+            'carpeta',
+            'folder',
+            'directorio',
+            'mkdir']):
         folder_name = "carpeta_nueva"
         words = user_prompt.split()
         for i, word in enumerate(words):
-            if word in ['carpeta', 'folder', 'directorio'] and i + 1 < len(words):
+            if word in [
+                'carpeta',
+                'folder',
+                    'directorio'] and i + 1 < len(words):
                 folder_name = words[i + 1]
                 break
         return {"CALL": "create_folder", "ARGS": {"path": folder_name}}
 
     # LISTAR ARCHIVOS
-    if any(word in prompt_lower for word in ['lista', 'archivos', 'files', 'ls', 'dir']):
+    if any(
+        word in prompt_lower for word in [
+            'lista',
+            'archivos',
+            'files',
+            'ls',
+            'dir']):
         path = "."
         # Intentar usar contexto primero
         if context_manager and context_manager.context.get("last_folder"):
@@ -183,7 +218,12 @@ def _smart_fallback(user_prompt, context_manager=None):
         }
 
     # ANALIZAR DATOS - NUEVO CASO
-    if any(word in prompt_lower for word in ['analiz', 'analyze', 'estadistic', 'metric']):
+    if any(
+        word in prompt_lower for word in [
+            'analiz',
+            'analyze',
+            'estadistic',
+            'metric']):
         input_file = "data/ventas.csv"  # default
         if 'iris' in prompt_lower:
             input_file = "data/iris.csv"
@@ -192,8 +232,6 @@ def _smart_fallback(user_prompt, context_manager=None):
             "CALL": "analyze_data",
             "ARGS": {
                 "input_path": input_file,
-                "output_path": f"output/analisis_{os.path.basename(input_file)}.json"
-            }
-        }
+                "output_path": f"output/analisis_{os.path.basename(input_file)}.json"}}
 
     return {"CALL": None, "ARGS": {}}

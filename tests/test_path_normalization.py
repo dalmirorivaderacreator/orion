@@ -1,16 +1,16 @@
+from dispatcher import dispatch
+from utils import normalize_path
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-from utils import normalize_path
-
-from dispatcher import dispatch
 
 
 # Mock function for testing dispatch
 def mock_function(path):
     return f"Path received: {path}"
+
 
 class TestPathNormalization(unittest.TestCase):
     def test_normalize_path(self):
@@ -39,7 +39,6 @@ class TestPathNormalization(unittest.TestCase):
         # Restore registry
         if "test_func" in registry._function_registry:
             del registry._function_registry["test_func"]
-
 
 
 if __name__ == '__main__':

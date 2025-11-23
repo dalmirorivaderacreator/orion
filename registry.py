@@ -5,6 +5,7 @@ Registro automático de funciones para ORION
 
 _function_registry = {}
 
+
 def register_function(name, description, argument_types):
     """Decorador para registrar funciones"""
     def decorator(func):
@@ -16,13 +17,16 @@ def register_function(name, description, argument_types):
         return func
     return decorator
 
+
 def get_available_functions():
     """Devuelve todas las funciones registradas"""
     return _function_registry
 
+
 def get_function(name):
     """Devuelve una función por nombre"""
     return _function_registry.get(name)
+
 
 def build_system_prompt(context_string=""):
     """Construye el system prompt con diseño radicalmente enfocado en contexto"""
@@ -33,7 +37,7 @@ def build_system_prompt(context_string=""):
     if context_string:
         prompt += f"""
 {context_string}
-INSTRUCCIÓN SUPREMA: Si ves variables arriba (ej: [LAST_FOLDER = '...']), 
+INSTRUCCIÓN SUPREMA: Si ves variables arriba (ej: [LAST_FOLDER = '...']),
 DEBES usarlas cuando el usuario diga "esa carpeta", "allí", "en el directorio", etc.
 NO uses "data" ni valores inventados si tienes un valor explícito arriba.
 """

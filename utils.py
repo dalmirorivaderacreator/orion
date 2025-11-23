@@ -2,6 +2,7 @@
 Utilidades generales para ORION.
 """
 
+
 def normalize_path(path: str) -> str:
     """
     Normaliza rutas de archivo para evitar problemas con separadores y prefijos.
@@ -22,7 +23,6 @@ def normalize_path(path: str) -> str:
         clean_path = clean_path[2:]
     elif clean_path.startswith("/"):
         clean_path = clean_path[1:]
-
 
     # Eliminar espacios en blanco
     clean_path = clean_path.strip()

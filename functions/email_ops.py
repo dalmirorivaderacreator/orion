@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from registry import register_function
 
+
 def _send_demo_email(to: str, subject: str, body: str) -> str:
     """Simula el envío de un correo y lo registra en logs."""
     try:
@@ -18,11 +19,13 @@ def _send_demo_email(to: str, subject: str, body: str) -> str:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         with open(log_file, "a", encoding="utf-8") as f:
-            f.write(f"[{timestamp}] TO: {to} | SUBJECT: {subject} | BODY: {body}\n")
+            f.write(
+                f"[{timestamp}] TO: {to} | SUBJECT: {subject} | BODY: {body}\n")
 
         return f"✅ [MODO DEMO] Email simulado enviado a {to} (registrado en {log_file})"
     except Exception as e:
         return f"❌ Error en modo demo: {str(e)}"
+
 
 @register_function(
     name="send_email",

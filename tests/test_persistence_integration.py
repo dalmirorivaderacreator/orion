@@ -1,13 +1,14 @@
+from context import ContextManager
+from functions.system_ops import set_preference
+from utils import normalize_path
+import database
 import unittest
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # pylint: disable=wrong-import-position, import-error
-import database
-from utils import normalize_path
-from functions.system_ops import set_preference
-from context import ContextManager
+
 
 class TestPersistenceIntegration(unittest.TestCase):
     def setUp(self):
@@ -22,7 +23,9 @@ class TestPersistenceIntegration(unittest.TestCase):
     def test_path_normalization_windows(self):
         # Test stripping leading slash
         self.assertEqual(normalize_path("/folder/file.txt"), "folder/file.txt")
-        self.assertEqual(normalize_path(".//folder//file.txt"), "folder/file.txt")
+        self.assertEqual(
+            normalize_path(".//folder//file.txt"),
+            "folder/file.txt")
 
     def test_preference_persistence(self):
         # Set preference
@@ -33,7 +36,6 @@ class TestPersistenceIntegration(unittest.TestCase):
         val = database.get_preference("favorite_color")
         self.assertEqual(val, "blue")
 
-
     def test_context_persistence_across_instances(self):
         # Instance 1: Set context
         cm1 = ContextManager()
@@ -42,6 +44,7 @@ class TestPersistenceIntegration(unittest.TestCase):
         # Instance 2: Load context
         cm2 = ContextManager()
         self.assertEqual(cm2.context["last_folder"], "secret_base")
+
 
 if __name__ == '__main__':
     unittest.main()

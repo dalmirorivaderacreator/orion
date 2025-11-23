@@ -6,8 +6,10 @@ from datetime import datetime
 # Asegurar que existe el directorio de logs
 os.makedirs("logs", exist_ok=True)
 
+
 class JsonFormatter(logging.Formatter):
     """Formateador personalizado para logs en JSON"""
+
     def format(self, record):
         log_record = {
             "timestamp": datetime.fromtimestamp(record.created).isoformat(),
@@ -22,6 +24,7 @@ class JsonFormatter(logging.Formatter):
             log_record.update(record.extra_data)
 
         return json.dumps(log_record, ensure_ascii=False)
+
 
 def setup_logger(name="orion_core"):
     """Configura y devuelve un logger robusto"""
@@ -50,6 +53,7 @@ def setup_logger(name="orion_core"):
     logger_instance.addHandler(console_handler)
 
     return logger_instance
+
 
 # Instancia global para importar fácilmente
 logger = setup_logger()

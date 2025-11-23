@@ -1,9 +1,9 @@
+from context import ContextManager
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-from context import ContextManager
 
 
 class TestContextSystem(unittest.TestCase):
@@ -20,8 +20,9 @@ class TestContextSystem(unittest.TestCase):
         self.assertEqual(cm.context["last_folder"], "another_folder")
 
         # Test 3: Download File
-        cm.infer_update("download_file", {"url": "http://x", "output_path": "data.csv"},
-                        "Downloaded")
+        cm.infer_update(
+            "download_file", {
+                "url": "http://x", "output_path": "data.csv"}, "Downloaded")
         self.assertEqual(cm.context["last_file"], "data.csv")
 
     def test_context_string_generation(self):
@@ -31,6 +32,7 @@ class TestContextSystem(unittest.TestCase):
         ctx_str = cm.get_context_string()
         self.assertIn("CONTEXTO ACTUAL", ctx_str)
         self.assertIn("last_folder: my_project", ctx_str)
+
 
 if __name__ == '__main__':
     unittest.main()

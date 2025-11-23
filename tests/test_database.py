@@ -1,9 +1,10 @@
+import database
 import unittest
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-import database
+
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
@@ -38,6 +39,7 @@ class TestDatabase(unittest.TestCase):
 
         val_none = database.get_preference("non_existent")
         self.assertIsNone(val_none)
+
 
 if __name__ == '__main__':
     unittest.main()
