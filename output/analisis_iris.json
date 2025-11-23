@@ -1,55 +1,55 @@
 {
-  "total_filas": 150,
+  "total_filas": 149,
   "total_columnas": 5,
   "columnas": [
-    "sepal_length",
-    "sepal_width",
-    "petal_length",
-    "petal_width",
-    "species"
+    "5.1",
+    "3.5",
+    "1.4",
+    "0.2",
+    "Iris-setosa"
   ],
   "tipos_datos": {
-    "sepal_length": "float64",
-    "sepal_width": "float64",
-    "petal_length": "float64",
-    "petal_width": "float64",
-    "species": "object"
+    "5.1": "float64",
+    "3.5": "float64",
+    "1.4": "float64",
+    "0.2": "float64",
+    "Iris-setosa": "object"
   },
   "estadisticas": {
-    "sepal_length": {
-      "count": 150.0,
-      "mean": 5.843333333333334,
-      "std": 0.828066127977863,
+    "5.1": {
+      "count": 149.0,
+      "mean": 5.8483221476510066,
+      "std": 0.8285940572656173,
       "min": 4.3,
       "25%": 5.1,
       "50%": 5.8,
       "75%": 6.4,
       "max": 7.9
     },
-    "sepal_width": {
-      "count": 150.0,
-      "mean": 3.0573333333333337,
-      "std": 0.4358662849366982,
+    "3.5": {
+      "count": 149.0,
+      "mean": 3.051006711409396,
+      "std": 0.4334988777167476,
       "min": 2.0,
       "25%": 2.8,
       "50%": 3.0,
       "75%": 3.3,
       "max": 4.4
     },
-    "petal_length": {
-      "count": 150.0,
-      "mean": 3.7580000000000005,
-      "std": 1.7652982332594662,
+    "1.4": {
+      "count": 149.0,
+      "mean": 3.774496644295302,
+      "std": 1.7596511617753423,
       "min": 1.0,
       "25%": 1.6,
-      "50%": 4.35,
+      "50%": 4.4,
       "75%": 5.1,
       "max": 6.9
     },
-    "petal_width": {
-      "count": 150.0,
-      "mean": 1.1993333333333336,
-      "std": 0.7622376689603465,
+    "0.2": {
+      "count": 149.0,
+      "mean": 1.2053691275167786,
+      "std": 0.7612920413899603,
       "min": 0.1,
       "25%": 0.3,
       "50%": 1.3,
@@ -58,10 +58,10 @@
     }
   },
   "valores_faltantes": {
-    "sepal_length": 0,
-    "sepal_width": 0,
-    "petal_length": 0,
-    "petal_width": 0,
-    "species": 0
+    "5.1": 0,
+    "3.5": 0,
+    "1.4": 0,
+    "0.2": 0,
+    "Iris-setosa": 0
   }
 }

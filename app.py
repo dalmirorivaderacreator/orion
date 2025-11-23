@@ -1,12 +1,17 @@
 import streamlit as st
+# pylint: disable=unused-import
+from dotenv import load_dotenv
 from llm_client import ask_orion
 from dispatcher import dispatch
 from registry import get_available_functions
-# Importar funciones para registro
-# pylint: disable=unused-import
-from functions import data_ops, file_ops, system_ops
+from functions import data_ops, file_ops, system_ops, email_ops
 from context import ContextManager
 from logger import logger
+
+# Cargar variables de entorno
+load_dotenv()
+
+
 
 
 # Configuración de la página
