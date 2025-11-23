@@ -418,3 +418,45 @@
 {"timestamp": "2025-11-23T18:07:40.145945", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 67}
 {"timestamp": "2025-11-23T18:07:40.145945", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "delete_folder", "ARGS": {"path": "carpeta_preprocessor"}}}
 {"timestamp": "2025-11-23T18:07:40.147232", "level": "INFO", "message": "Interacción Web exitosa", "module": "app", "function": "<module>", "prompt": "borrá esa carpeta", "call": {"CALL": "delete_folder", "ARGS": {"path": "carpeta_preprocessor"}}}
+{"timestamp": "2025-11-23T19:45:02.758782", "level": "INFO", "message": "Planificando tarea para: 'hola mundo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T19:45:02.758782", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T19:45:02.759751", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T19:45:02.759751", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T19:45:02.759751", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T19:45:02.759751", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:14:07.193961", "level": "INFO", "message": "Sistema ORION iniciado", "module": "main", "function": "<module>"}
+{"timestamp": "2025-11-23T20:14:20.498482", "level": "INFO", "message": "Input usuario: creá proyecto web completo", "module": "main", "function": "main", "user_prompt": "creá proyecto web completo"}
+{"timestamp": "2025-11-23T20:14:20.498482", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web completo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:14:20.499491", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:14:20.499491", "level": "INFO", "message": "Plan complejo detectado: 3 pasos", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:15:02.847097", "level": "INFO", "message": "Input usuario: creá una carpeta 'mi_app' y dentro un archivo 'app.js'", "module": "main", "function": "main", "user_prompt": "creá una carpeta 'mi_app' y dentro un archivo 'app.js'"}
+{"timestamp": "2025-11-23T20:15:02.847097", "level": "INFO", "message": "Planificando tarea para: 'creá una carpeta 'mi_app' y dentro un archivo 'app.js''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:15:02.847097", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:15:02.847097", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-23T20:15:34.416072", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 53}
+{"timestamp": "2025-11-23T20:15:34.416072", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "create_folder", "ARGS": {"path": "mi_app"}}}
+{"timestamp": "2025-11-23T20:15:34.416957", "level": "INFO", "message": "Ejecutando create_folder", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:15:34.426350", "level": "INFO", "message": "Ejecución exitosa", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:16:17.668774", "level": "INFO", "message": "Input usuario: creá carpeta y archivo", "module": "main", "function": "main", "user_prompt": "creá carpeta y archivo"}
+{"timestamp": "2025-11-23T20:16:17.668774", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta y archivo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:16:17.668774", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:16:17.668774", "level": "INFO", "message": "Plan complejo detectado: 2 pasos", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'hacé un backup de archivos'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'hola mundo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto de Python 3.9 a 3.11'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Planificando tarea para: 'configurá entorno de desarrollo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:34:23.173554", "level": "INFO", "message": "Plan generado por reglas: 4 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:35:10.999212", "level": "INFO", "message": "Sistema ORION iniciado", "module": "main", "function": "<module>"}
+{"timestamp": "2025-11-23T20:35:18.001864", "level": "INFO", "message": "Input usuario: creá carpeta 'mi_app' y archivo 'app.js'", "module": "main", "function": "main", "user_prompt": "creá carpeta 'mi_app' y archivo 'app.js'"}
+{"timestamp": "2025-11-23T20:35:18.001864", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan complejo detectado: 2 pasos", "module": "main", "function": "main"}

@@ -29,7 +29,7 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
         if not function_info:
             available = list(get_function("__dummy__") or [])
             return (
-                f"❌ Función '{function_name}' no encontrada. "
+                f"[ERROR] Función '{function_name}' no encontrada. "
                 f"Funciones disponibles: {', '.join(available)}"
             )
 
@@ -39,7 +39,7 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
 
         if missing_args:
             return (
-                f"❌ Faltan argumentos para '{function_name}': {missing_args}. "
+                f"[ERROR] Faltan argumentos para '{function_name}': {missing_args}. "
                 f"Argumentos requeridos: {list(required_args)}"
             )
 
@@ -50,14 +50,14 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
         if context_manager:
             context_manager.infer_update(function_name, arguments, result)
 
-        return f"✅ {result}"
+        return f"[OK] {result}"
 
 
     except FileNotFoundError as e:
-        return f"❌ Archivo no encontrado: {str(e)}"
+        return f"[ERROR] Archivo no encontrado: {str(e)}"
     except PermissionError as e:
-        return f"❌ Error de permisos: {str(e)}"
+        return f"[ERROR] Error de permisos: {str(e)}"
     except KeyError as e:
-        return f"❌ Columna no encontrada en los datos: {str(e)}"
+        return f"[ERROR] Columna no encontrada en los datos: {str(e)}"
     except Exception as e:
-        return f"❌ Error ejecutando '{function_name}': {str(e)}"
+        return f"[ERROR] Error ejecutando '{function_name}': {str(e)}"
