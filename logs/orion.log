@@ -460,3 +460,7 @@
 {"timestamp": "2025-11-23T20:35:18.001864", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
 {"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
 {"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan complejo detectado: 2 pasos", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:37:31.466349", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-23T20:37:52.282564", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 40}
+{"timestamp": "2025-11-23T20:37:52.282564", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "get_capabilities", "ARGS": {}}}
+{"timestamp": "2025-11-23T20:37:52.288837", "level": "INFO", "message": "Interacción Web exitosa", "module": "app", "function": "<module>", "prompt": "que funciones tienes?", "call": {"CALL": "get_capabilities", "ARGS": {}}}
