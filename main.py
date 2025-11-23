@@ -5,19 +5,26 @@ from dispatcher import dispatch
 from logger import logger
 from functions import data_ops, file_ops, system_ops, email_ops
 from context import ContextManager
+import database
 
 # Cargar variables de entorno
 load_dotenv()
-
-
-
 
 print("=== Orion v0.1 conectado a Ollama ===")
 logger.info("Sistema ORION iniciado")
 
 def main():
     """Bucle principal de la CLI"""
+    # Inicializar DB
+    database.init_db()
+    
+    # Mostrar mensaje de bienvenida con historial
+    last_cmd = database.get_last_command()
+    if last_cmd:
+        print(f"👋 Bienvenido de nuevo. Tu último comando fue: '{last_cmd['command']}' ({last_cmd['timestamp']})")
+    
     context = ContextManager()
+
 
     while True:
         try:
@@ -35,7 +42,12 @@ def main():
                 logger.info("Ejecutando %s", intent['CALL'])
                 result = dispatch(intent["CALL"], intent["ARGS"], context)
                 print(f">>> ORION: {result}")
+                
+                # Guardar en historial
+                database.add_history(user_input, result)
+                
                 logger.info("Ejecución exitosa")
+
             else:
                 print("\n[ORION]: No se pudo interpretar la instrucción.")
                 logger.warning(

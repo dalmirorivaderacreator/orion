@@ -7,9 +7,10 @@ from registry import register_function
 
 @register_function(
     name="create_folder",
-    description="Crea una carpeta nueva",
+    description="Crea una carpeta nueva y actualiza el contexto (last_folder)",
     argument_types={"path": "str"}
 )
+
 def create_folder(path):
     """Crea un directorio si no existe."""
     os.makedirs(path, exist_ok=True)

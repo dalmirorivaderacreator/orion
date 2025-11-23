@@ -20,6 +20,9 @@ def normalize_path(path: str) -> str:
     # Eliminar prefijos comunes que confunden
     if clean_path.startswith("./"):
         clean_path = clean_path[2:]
+    elif clean_path.startswith("/"):
+        clean_path = clean_path[1:]
+
 
     # Eliminar espacios en blanco
     clean_path = clean_path.strip()

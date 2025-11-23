@@ -52,12 +52,15 @@ def ask_orion(user_prompt, context_manager=None):
         # Obtener contexto si existe
         context_str = context_manager.get_context_string() if context_manager else ""
 
+        # PRE-PROCESAMIENTO TÉCNICO
+        final_prompt = _preprocess_prompt(user_prompt, context_manager)
+
         # Intento con Ollama real
         response = requests.post(
             'http://localhost:11434/api/generate',
             json={
                 "model": "phi3:mini",
-                "prompt": user_prompt,
+                "prompt": final_prompt,
                 "system": build_system_prompt(context_str),
                 "stream": False,
                 "format": "json"  # <-- FORZAR JSON
@@ -92,10 +95,56 @@ def ask_orion(user_prompt, context_manager=None):
     except Exception as e:
         print(f"⚠️  Ollama no disponible ({e}), usando fallback inteligente...")
         logger.warning("Fallo Ollama (%s), activando Smart Fallback", e)
-        return _smart_fallback(user_prompt)
+        return _smart_fallback(user_prompt, context_manager)
 
-def _smart_fallback(user_prompt):
+def _preprocess_prompt(user_prompt, context_manager):
+    """
+    Reemplaza referencias contextuales ("esa carpeta", "ahí") 
+    con los valores reales ANTES de enviar al LLM.
+    """
+    if not context_manager:
+        return user_prompt
+    
+    import re
+    processed_prompt = user_prompt
+    ctx = context_manager.context
+    
+    # 1. Reemplazar referencias a CARPETA
+    if ctx.get("last_folder"):
+        folder = ctx["last_folder"]
+        # Variaciones comunes
+        patterns = [
+            r"\besa carpeta\b", 
+            r"\bese directorio\b", 
+            r"\bahí\b", 
+            r"\ballí\b",
+            r"\ben la carpeta\b"
+        ]
+        for pattern in patterns:
+            processed_prompt = re.sub(pattern, folder, processed_prompt, flags=re.IGNORECASE)
+
+    # 2. Reemplazar referencias a ARCHIVO
+    if ctx.get("last_file"):
+        file_path = ctx["last_file"]
+        patterns = [
+            r"\bese archivo\b", 
+            r"\bese documento\b",
+            r"\bel archivo generado\b"
+        ]
+        for pattern in patterns:
+            processed_prompt = re.sub(pattern, file_path, processed_prompt, flags=re.IGNORECASE)
+            
+    if processed_prompt != user_prompt:
+        logger.info("Prompt pre-procesado: '%s' -> '%s'", user_prompt, processed_prompt)
+        print(f"Contexto aplicado: '{user_prompt}' -> '{processed_prompt}'")
+
+        
+    return processed_prompt
+
+def _smart_fallback(user_prompt, context_manager=None):
     """Fallback más inteligente que entiende contexto"""
+    # ... (resto de la función igual)
+
     prompt_lower = user_prompt.lower()
 
     # CREAR CARPETA
@@ -111,10 +160,16 @@ def _smart_fallback(user_prompt):
     # LISTAR ARCHIVOS
     if any(word in prompt_lower for word in ['lista', 'archivos', 'files', 'ls', 'dir']):
         path = "."
+        # Intentar usar contexto primero
+        if context_manager and context_manager.context.get("last_folder"):
+            path = context_manager.context["last_folder"]
+
+        # Overrides específicos
         if 'data' in prompt_lower:
             path = "data"
         elif 'output' in prompt_lower:
             path = "output"
+
         return {"CALL": "list_files", "ARGS": {"path": path}}
 
     # CONVERTIR CSV - SIEMPRE usar archivo conocido
