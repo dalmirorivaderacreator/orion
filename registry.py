@@ -25,29 +25,36 @@ def get_function(name):
     return _function_registry.get(name)
 
 def build_system_prompt(context_string=""):
-    """Construye el system prompt con instrucciones más estrictas"""
+    """Construye el system prompt con diseño radicalmente enfocado en contexto"""
     functions = get_available_functions()
 
-    prompt = (
-        "Eres ORION, un asistente que interpreta instrucciones de lenguaje natural "
-        "y las traduce en acciones programables.\n"
-    )
-
+    # 1. CONTEXTO AL PRINCIPIO (CRÍTICO)
+    prompt = ""
     if context_string:
-        prompt += context_string + "\n"
+        prompt += f"""
+{context_string}
+INSTRUCCIÓN SUPREMA: Si ves variables arriba (ej: [LAST_FOLDER = '...']), 
+DEBES usarlas cuando el usuario diga "esa carpeta", "allí", "en el directorio", etc.
+NO uses "data" ni valores inventados si tienes un valor explícito arriba.
+"""
 
+    # 2. DEFINICIÓN DE ROL Y FORMATO
     prompt += """
-    "param2": "valor_real"
-  }
-}
+Eres ORION. Tu trabajo es generar JSON estructurado.
 
-Si no hay función adecuada o no entendés:
+FORMATO DE RESPUESTA:
 {
-  "CALL": null,
-  "ARGS": {}
+  "CALL": "nombre_funcion",
+  "ARGS": { "arg": "valor" }
 }
 
-**FUNCIONES DISPONIBLES (SOLO ESTAS):**
+REGLAS DE ORO:
+1. Si el usuario pide "esa carpeta" y [LAST_FOLDER] existe -> USA [LAST_FOLDER].
+2. Si el usuario pide "ese archivo" y [LAST_FILE] existe -> USA [LAST_FILE].
+3. CONSULTAS ("cuál es mi...") -> get_preference(key="favorite_X").
+4. GUARDADO ("recordá que...") -> set_preference(key="favorite_X", value="...").
+
+FUNCIONES DISPONIBLES:
 """
 
     for func_name, info in functions.items():
@@ -56,29 +63,27 @@ Si no hay función adecuada o no entendés:
             f"Argumentos: {list(info['argument_types'].keys())}"
         )
 
-    prompt += "\n\n**EJEMPLOS CORRECTOS:**"
-    prompt += '\nUsuario: "qué puedes hacer?" o "qué funciones tienes?"'
-    prompt += '\nTú: {"CALL": "get_capabilities", "ARGS": {}}'
+    # 3. EJEMPLOS (Minimizados y Context-Aware)
+    prompt += """
 
-    prompt += '\nUsuario: "creá una carpeta llamada documentos"'
-    prompt += '\nTú: {"CALL": "create_folder", "ARGS": {"path": "documentos"}}'
+EJEMPLOS:
 
+Usuario: "creá carpeta proyectos"
+Tú: {"CALL": "create_folder", "ARGS": {"path": "proyectos"}}
 
-    prompt += '\nUsuario: "listá los archivos en data"'
-    prompt += '\nTú: {"CALL": "list_files", "ARGS": {"path": "data"}}'
+Usuario: "listá archivos en esa carpeta"
+(Si [LAST_FOLDER = 'proyectos'])
+Tú: {"CALL": "list_files", "ARGS": {"path": "proyectos"}}
 
-    prompt += '\nUsuario: "convertí csv a json"'
-    prompt += (
-        '\nTú: {"CALL": "convert_csv_to_json", '
-        '"ARGS": {"input_path": "data/ventas.csv", "output_path": "output/ventas.json"}}'
-    )
+Usuario: "listá archivos en esa carpeta"
+(Si [LAST_FOLDER = 'data/logs'])
+Tú: {"CALL": "list_files", "ARGS": {"path": "data/logs"}}
 
-    prompt += '\nUsuario: "convertí el archivo de ventas"'
-    prompt += (
-        '\nTú: {"CALL": "convert_csv_to_json", '
-        '"ARGS": {"input_path": "data/ventas.csv", "output_path": "output/ventas.json"}}'
-    )
+Usuario: "mi color favorito es rojo"
+Tú: {"CALL": "set_preference", "ARGS": {"key": "favorite_color", "value": "rojo"}}
+
+Usuario: "¿cuál es mi color favorito?"
+Tú: {"CALL": "get_preference", "ARGS": {"key": "favorite_color"}}
+"""
 
     return prompt
-
-# Fin de registry.py
