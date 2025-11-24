@@ -20,6 +20,18 @@ def main():
     # Inicializar DB
     database.init_db()
 
+    # Inicializar sistema de plugins
+    from core.plugins import PluginManager  # pylint: disable=import-outside-toplevel
+    plugin_manager = PluginManager()
+    loaded_count = plugin_manager.load_all_plugins()
+    
+    if loaded_count > 0:
+        loaded_plugins = list(plugin_manager.plugins.keys())
+        logger.info("Plugins cargados: %s", loaded_plugins)
+        print(f"🔌 Plugins cargados: {', '.join(loaded_plugins)}")
+    else:
+        logger.info("No se cargaron plugins")
+
     # Mostrar mensaje de bienvenida con historial
     print("\n🌌 ORION - Asistente de Desarrollo Inteligente")
     print("---------------------------------------------")

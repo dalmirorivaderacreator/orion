@@ -580,3 +580,164 @@
 {"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en esa carpeta' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
 {"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'ponelo ahí' -> 'ponelo test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
 {"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en ese directorio' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:44:32.147355", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.148105", "level": "DEBUG", "message": "Discovered plugin: data_analyzer at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\data_analyzer", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.148105", "level": "DEBUG", "message": "Discovered plugin: file_processor at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\file_processor", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.148627", "level": "DEBUG", "message": "Discovered plugin: web_scraper at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\web_scraper", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.148627", "level": "INFO", "message": "Discovered 3 plugins: ['data_analyzer', 'file_processor', 'web_scraper']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.148627", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.151750", "level": "INFO", "message": "Plugin 'data_analyzer' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:44:32.151750", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.163718", "level": "INFO", "message": "Plugin 'file_processor' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:44:32.169504", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.172626", "level": "ERROR", "message": "Plugin 'web_scraper' initialization failed", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:44:32.173663", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmp_8y6xt9j']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.174183", "level": "INFO", "message": "Discovered 0 plugins: []", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.174701", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmpoxt996lu']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.175218", "level": "DEBUG", "message": "Discovered plugin: test_plugin at C:\\Users\\Noxi-PC\\AppData\\Local\\Temp\\tmpoxt996lu\\test_plugin", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.175218", "level": "INFO", "message": "Discovered 1 plugins: ['test_plugin']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:44:32.176258", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmpx57vk4sp']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.176778", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmp_sbanr3l']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:44:32.177295", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmp_zm7g5dh']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.127956", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:45:00.136306", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:45:00.163173", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:45:00.163173", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.163173", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.163173", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T07:45:00.185762", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:45:00.194570", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:45:00.288678", "level": "INFO", "message": "Planificando tarea para: 'hacé un backup de archivos'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "Planificando tarea para: 'hola mundo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289182", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto de Python 3.9 a 3.11'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Planificando tarea para: 'configurá entorno de desarrollo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.289696", "level": "INFO", "message": "Plan generado por reglas: 4 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:45:00.290211", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.290211", "level": "DEBUG", "message": "Discovered plugin: data_analyzer at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\data_analyzer", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.290732", "level": "DEBUG", "message": "Discovered plugin: file_processor at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\file_processor", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.290732", "level": "DEBUG", "message": "Discovered plugin: web_scraper at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\web_scraper", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.290732", "level": "INFO", "message": "Discovered 3 plugins: ['data_analyzer', 'file_processor', 'web_scraper']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.291266", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.300022", "level": "INFO", "message": "Plugin 'data_analyzer' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:45:00.300022", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.308969", "level": "INFO", "message": "Plugin 'file_processor' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:45:00.309360", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.317681", "level": "ERROR", "message": "Plugin 'web_scraper' initialization failed", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:45:00.318717", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmpaajrft94']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.318717", "level": "INFO", "message": "Discovered 0 plugins: []", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.319235", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmpge6b29l5']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.320272", "level": "DEBUG", "message": "Discovered plugin: test_plugin at C:\\Users\\Noxi-PC\\AppData\\Local\\Temp\\tmpge6b29l5\\test_plugin", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.320272", "level": "INFO", "message": "Discovered 1 plugins: ['test_plugin']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:45:00.321648", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmprsux8vkb']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.322184", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmprnqnqzv_']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.322704", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\AppData\\\\Local\\\\Temp\\\\tmpulsxqgds']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:45:00.330544", "level": "INFO", "message": "Prompt pre-procesado: 'borrá ese archivo' -> 'borrá test_file.txt'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:45:00.330544", "level": "INFO", "message": "Prompt pre-procesado: 'procesá ese documento' -> 'procesá test_file.txt'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:45:00.341433", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en esa carpeta' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:45:00.341433", "level": "INFO", "message": "Prompt pre-procesado: 'ponelo ahí' -> 'ponelo test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:45:00.341433", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en ese directorio' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T07:57:03.172683", "level": "INFO", "message": "Sistema ORION iniciado", "module": "main", "function": "<module>"}
+{"timestamp": "2025-11-24T07:57:03.192597", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins', 'C:\\\\Users\\\\Noxi-PC\\\\.orion\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T07:57:03.192597", "level": "DEBUG", "message": "Discovered plugin: data_analyzer at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\data_analyzer", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:57:03.192597", "level": "DEBUG", "message": "Discovered plugin: file_processor at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\file_processor", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:57:03.192597", "level": "DEBUG", "message": "Discovered plugin: web_scraper at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\web_scraper", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:57:03.194603", "level": "DEBUG", "message": "Plugin directory does not exist: C:\\Users\\Noxi-PC\\.orion\\plugins", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:57:03.194603", "level": "INFO", "message": "Discovered 3 plugins: ['data_analyzer', 'file_processor', 'web_scraper']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T07:57:03.195157", "level": "INFO", "message": "Plugin 'data_analyzer' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:57:03.199442", "level": "INFO", "message": "Plugin 'file_processor' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:57:03.199442", "level": "ERROR", "message": "Plugin 'web_scraper' initialization failed", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T07:57:03.199442", "level": "INFO", "message": "Loaded 2/3 plugins", "module": "plugin_manager", "function": "load_all_plugins"}
+{"timestamp": "2025-11-24T07:57:03.199442", "level": "INFO", "message": "Plugins cargados: ['data_analyzer', 'file_processor']", "module": "main", "function": "main"}
+{"timestamp": "2025-11-24T07:57:22.241838", "level": "INFO", "message": "Input usuario: renombrá todos los archivos .txt en carpeta_test", "module": "main", "function": "main", "user_prompt": "renombrá todos los archivos .txt en carpeta_test"}
+{"timestamp": "2025-11-24T07:57:22.241838", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:57:22.243846", "level": "INFO", "message": "Planificando tarea para: 'renombrá todos los archivos .txt en carpeta_test'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:57:22.243846", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:57:22.243846", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T07:57:22.243846", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T07:57:53.301300", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 104}
+{"timestamp": "2025-11-24T07:57:53.301300", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "batch_rename_files", "ARGS": {"directory": "carpeta_test", "pattern": "*", "replacement": ""}}}
+{"timestamp": "2025-11-24T07:57:56.853657", "level": "INFO", "message": "Input usuario: generá un gráfico de datos.csv", "module": "main", "function": "main", "user_prompt": "generá un gráfico de datos.csv"}
+{"timestamp": "2025-11-24T07:57:56.853657", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:57:56.853657", "level": "INFO", "message": "Planificando tarea para: 'generá un gráfico de datos.csv'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:57:56.854655", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:57:56.854655", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T07:57:56.854655", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T07:58:22.764168", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 165}
+{"timestamp": "2025-11-24T07:58:22.764168", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "generate_chart", "ARGS": {"csv_path": "datos.csv", "chart_type": "bar", "output_path": "/ruta/salida/grafico.png"}}}
+{"timestamp": "2025-11-24T07:58:28.852414", "level": "INFO", "message": "Input usuario: encontrá archivos duplicados en mi proyecto", "module": "main", "function": "main", "user_prompt": "encontrá archivos duplicados en mi proyecto"}
+{"timestamp": "2025-11-24T07:58:28.852414", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T07:58:28.852414", "level": "INFO", "message": "Planificando tarea para: 'encontrá archivos duplicados en mi proyecto'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:58:28.853403", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T07:58:28.853403", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T07:58:28.853403", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T07:58:51.435128", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 73}
+{"timestamp": "2025-11-24T07:58:51.435128", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "find_duplicates", "ARGS": {"directory": "/ruta/del/proyecto/"}}}
+{"timestamp": "2025-11-24T08:01:26.472954", "level": "INFO", "message": "Sistema ORION iniciado", "module": "main", "function": "<module>"}
+{"timestamp": "2025-11-24T08:01:26.491524", "level": "INFO", "message": "PluginManager initialized with directories: ['C:\\\\Users\\\\Noxi-PC\\\\orion\\\\core\\\\plugins', 'C:\\\\Users\\\\Noxi-PC\\\\.orion\\\\plugins']", "module": "plugin_manager", "function": "__init__"}
+{"timestamp": "2025-11-24T08:01:26.492526", "level": "DEBUG", "message": "Discovered plugin: data_analyzer at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\data_analyzer", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T08:01:26.492526", "level": "DEBUG", "message": "Discovered plugin: file_processor at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\file_processor", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T08:01:26.492526", "level": "DEBUG", "message": "Discovered plugin: web_scraper at C:\\Users\\Noxi-PC\\orion\\core\\plugins\\web_scraper", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T08:01:26.492526", "level": "DEBUG", "message": "Plugin directory does not exist: C:\\Users\\Noxi-PC\\.orion\\plugins", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T08:01:26.492526", "level": "INFO", "message": "Discovered 3 plugins: ['data_analyzer', 'file_processor', 'web_scraper']", "module": "plugin_manager", "function": "discover_plugins"}
+{"timestamp": "2025-11-24T08:01:30.699471", "level": "INFO", "message": "Plugin 'data_analyzer' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T08:01:30.706051", "level": "INFO", "message": "Plugin 'file_processor' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T08:01:30.942634", "level": "INFO", "message": "Plugin 'web_scraper' v1.0.0 loaded successfully", "module": "plugin_manager", "function": "load_plugin"}
+{"timestamp": "2025-11-24T08:01:30.943634", "level": "INFO", "message": "Loaded 3/3 plugins", "module": "plugin_manager", "function": "load_all_plugins"}
+{"timestamp": "2025-11-24T08:01:30.943634", "level": "INFO", "message": "Plugins cargados: ['data_analyzer', 'file_processor', 'web_scraper']", "module": "main", "function": "main"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "INFO", "message": "Input usuario: renombrá todos los archivos .txt en carpeta_test agregando 'backup_'", "module": "main", "function": "main", "user_prompt": "renombrá todos los archivos .txt en carpeta_test agregando 'backup_'"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "INFO", "message": "Planificando tarea para: 'renombrá todos los archivos .txt en carpeta_test agregando 'backup_''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:01:42.260666", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:02:08.115941", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 111}
+{"timestamp": "2025-11-24T08:02:08.115941", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "batch_rename_files", "ARGS": {"directory": "carpeta_test", "pattern": "*", "replacement": "backup_"}}}
+{"timestamp": "2025-11-24T08:02:11.556192", "level": "INFO", "message": "Input usuario: generá un gráfico de ejemplo", "module": "main", "function": "main", "user_prompt": "generá un gráfico de ejemplo"}
+{"timestamp": "2025-11-24T08:02:11.556192", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:02:11.557183", "level": "INFO", "message": "Planificando tarea para: 'generá un gráfico de ejemplo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:02:11.557183", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:02:11.557183", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:02:11.557183", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:02:43.622560", "level": "WARNING", "message": "Fallo Ollama (HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)), activando Smart Fallback", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:02:43.623632", "level": "WARNING", "message": "No se pudo interpretar instrucción", "module": "main", "function": "main"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "INFO", "message": "Input usuario: extraé los links de https://example.com", "module": "main", "function": "main", "user_prompt": "extraé los links de https://example.com"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "INFO", "message": "Planificando tarea para: 'extraé los links de https://example.com'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:02:47.034962", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:02:51.200779", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 65}
+{"timestamp": "2025-11-24T08:02:51.200779", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "extract_links", "ARGS": {"url": "https://example.com"}}}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "INFO", "message": "Input usuario: renombrá archivos .txt en carpeta_test usando patrón '*.txt' y reemplazo 'backup_'", "module": "main", "function": "main", "user_prompt": "renombrá archivos .txt en carpeta_test usando patrón '*.txt' y reemplazo 'backup_'"}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "INFO", "message": "Planificando tarea para: 'renombrá archivos .txt en carpeta_test usando patrón '*.txt' y reemplazo 'backup_''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:03:33.121383", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:04:02.596912", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 108}
+{"timestamp": "2025-11-24T08:04:02.596912", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "batch_rename_files", "ARGS": {"directory": "carpeta_test", "pattern": "*.txt", "replacement": ""}}}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "INFO", "message": "Input usuario: ejecutá batch_rename_files en carpeta_test con patrón '*.txt' y reemplazo 'backup_'", "module": "main", "function": "main", "user_prompt": "ejecutá batch_rename_files en carpeta_test con patrón '*.txt' y reemplazo 'backup_'"}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "INFO", "message": "Planificando tarea para: 'ejecutá batch_rename_files en carpeta_test con patrón '*.txt' y reemplazo 'backup_''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:04:29.904894", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:05:01.071042", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 115}
+{"timestamp": "2025-11-24T08:05:01.071042", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "batch_rename_files", "ARGS": {"directory": "carpeta_test", "pattern": "*.txt", "replacement": "backup_"}}}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "INFO", "message": "Input usuario: buscá archivos duplicados en carpeta_test", "module": "main", "function": "main", "user_prompt": "buscá archivos duplicados en carpeta_test"}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "INFO", "message": "Planificando tarea para: 'buscá archivos duplicados en carpeta_test'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T08:05:11.000450", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T08:05:15.269217", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 66}
+{"timestamp": "2025-11-24T08:05:15.269217", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "find_duplicates", "ARGS": {"directory": "carpeta_test"}}}
