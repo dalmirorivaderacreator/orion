@@ -3,6 +3,7 @@ Operaciones del sistema para ORION (Capacidades, info).
 """
 from registry import register_function, get_available_functions
 
+
 @register_function(
     name="get_capabilities",
     description="Devuelve una lista de lo que ORION puede hacer",
@@ -18,17 +19,20 @@ def get_capabilities():
 
     return "\n".join(capabilities)
 
+
 @register_function(
     name="set_preference",
     description="Guarda una preferencia del usuario (ej: carpeta favorita, tema)",
-    argument_types={"key": "str", "value": "str"}
-)
+    argument_types={
+        "key": "str",
+         "value": "str"})
 def set_preference(key: str, value: str) -> str:
     """Guarda una preferencia en la base de datos."""
     # pylint: disable=import-outside-toplevel
     import database
     database.set_preference(key, value)
     return f"✅ Preferencia guardada: {key} = {value}"
+
 
 @register_function(
     name="get_preference",
@@ -43,4 +47,3 @@ def get_preference(key: str) -> str:
     if value:
         return f"✅ Preferencia '{key}': {value}"
     return f"ℹ️ No se encontró preferencia para '{key}'"
-

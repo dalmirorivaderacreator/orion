@@ -1,10 +1,10 @@
+from functions.email_ops import send_email
 import unittest
 from unittest.mock import patch, MagicMock
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-from functions.email_ops import send_email
 
 
 class TestEmailOps(unittest.TestCase):
@@ -80,6 +80,7 @@ class TestEmailOps(unittest.TestCase):
         # Verify
         self.assertIn("❌ Error al enviar correo", result)
         self.assertIn("Connection failed", result)
+
 
 if __name__ == '__main__':
     unittest.main()

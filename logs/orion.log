@@ -460,3 +460,96 @@
 {"timestamp": "2025-11-23T20:35:18.001864", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
 {"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
 {"timestamp": "2025-11-23T20:35:18.002864", "level": "INFO", "message": "Plan complejo detectado: 2 pasos", "module": "main", "function": "main"}
+{"timestamp": "2025-11-23T20:37:31.466349", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-23T20:37:52.282564", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 40}
+{"timestamp": "2025-11-23T20:37:52.282564", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "get_capabilities", "ARGS": {}}}
+{"timestamp": "2025-11-23T20:37:52.288837", "level": "INFO", "message": "Interacción Web exitosa", "module": "app", "function": "<module>", "prompt": "que funciones tienes?", "call": {"CALL": "get_capabilities", "ARGS": {}}}
+{"timestamp": "2025-11-24T05:58:58.007863", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web completo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T05:58:58.007863", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:00:08.642193", "level": "INFO", "message": "Planificando tarea para: 'que puedes hacer por mi?'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:00:08.642193", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:00:08.643198", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T06:00:37.779694", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 58}
+{"timestamp": "2025-11-24T06:00:37.779694", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "create_folder", "ARGS": {"path": "mi_proyecto"}}}
+{"timestamp": "2025-11-24T06:07:41.631796", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:07:41.632313", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:07:41.632313", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:07:41.632313", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:07:41.659983", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:13:34.883067", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:13:34.883580", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:13:34.883580", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:13:34.883580", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:13:34.906947", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:18:11.320761", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:18:16.112681", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:18:16.112681", "level": "INFO", "message": "Planificando tarea para: 'quien te creo?'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:18:16.113679", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:18:16.113679", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:18:16.113679", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T06:18:36.609692", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 35}
+{"timestamp": "2025-11-24T06:18:36.609692", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "create_file", "ARGS": {}}}
+{"timestamp": "2025-11-24T06:22:32.905334", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:22:32.905850", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:22:32.905850", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:22:32.905850", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:22:32.934101", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:24:05.090751", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:24:08.882717", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:24:21.243823", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:24:21.243823", "level": "INFO", "message": "Planificando tarea para: 'que podes hacer por mi?'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:24:21.243823", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:24:21.243823", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:24:21.243823", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T06:24:45.896930", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 197}
+{"timestamp": "2025-11-24T06:24:45.897474", "level": "ERROR", "message": "Error validando JSON: Expecting ',' delimiter: line 7 column 2 (char 197)", "module": "llm_client", "function": "_validate_and_clean_json", "raw_text": "{\n    \"CALL\": \"set_preference\",\n    \"ARGS\": {\n        \"key\": \"general_assistance\",\n   \n    \"value\": \"Disponible para ayudarte con tareas relacionadas al desarrollo web y la gestión del proyecto.\"\n}"}
+{"timestamp": "2025-11-24T06:24:45.898641", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": null, "ARGS": {}}}
+{"timestamp": "2025-11-24T06:24:53.553830", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:24:53.553830", "level": "INFO", "message": "Planificando tarea para: 'tus funciones cuales son?'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:24:53.553830", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:24:53.554841", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:24:53.554841", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T06:25:08.561889", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 355}
+{"timestamp": "2025-11-24T06:25:08.561889", "level": "ERROR", "message": "Error validando JSON: Expecting ',' delimiter: line 12 column 2 (char 355)", "module": "llm_client", "function": "_validate_and_clean_json", "raw_text": "{\n  \"FUNCIONES\": {\n    \"convert_csv_to_json\": {\n      \"DESCRIPCIÓN\": \"Convierte un archivo CSV a formato JSON.\",\n      \"ARGUMENTOS\": [\"input_path\", \"output_path\"]\n    },\n    \"analyze_data\": {\n      \"DESCRIPCIÓN\": \"Analiza un CSV y genera estadísticas básicas.\",\n      \"ARGUMENTOS\": [\"input_path\", \"output01.html(**{'CALL': 'download_file', **\"\n    ]\n  }\n}"}
+{"timestamp": "2025-11-24T06:25:08.562434", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": null, "ARGS": {}}}
+{"timestamp": "2025-11-24T06:25:14.505589", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:25:28.200737", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:25:28.201743", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:25:28.201743", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:25:28.201743", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:25:43.957936", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:10.049006", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:10.059766", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:10.083834", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:10.084351", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:30:10.084351", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:30:10.084351", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:30:10.110865", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:10.115570", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:35.902569", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:35.911254", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:35.934130", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:35.934654", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:30:35.934654", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:30:35.934654", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:30:35.964303", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:30:35.975317", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:27.451459", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:33.483505", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:40.592816", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:46.313456", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:55.153468", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:31:55.153468", "level": "INFO", "message": "Planificando tarea para: 'Creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:31:55.153468", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:31:55.153468", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:34:11.987649", "level": "INFO", "message": "Intención detectada: unknown", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:34:11.988649", "level": "INFO", "message": "Planificando tarea para: 'podemos conversar?'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:34:11.988649", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:34:11.988649", "level": "INFO", "message": "Intentando comando simple vía LLM", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:34:11.988649", "level": "DEBUG", "message": "Enviando request a Ollama...", "module": "llm_client", "function": "ask_orion"}
+{"timestamp": "2025-11-24T06:34:32.077927", "level": "DEBUG", "message": "Respuesta raw Ollama recibida", "module": "llm_client", "function": "ask_orion", "response_length": 52}
+{"timestamp": "2025-11-24T06:34:32.077927", "level": "INFO", "message": "LLM interpretó comando", "module": "llm_client", "function": "ask_orion", "parsed": {"CALL": "start_conversation", "ARGS": {}}}
+{"timestamp": "2025-11-24T06:39:21.035504", "level": "INFO", "message": "Sistema ORION iniciado", "module": "main", "function": "<module>"}
+{"timestamp": "2025-11-24T06:39:35.067585", "level": "INFO", "message": "Input usuario: Ayuda", "module": "main", "function": "main", "user_prompt": "Ayuda"}
+{"timestamp": "2025-11-24T06:39:35.068580", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:40:13.697396", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}

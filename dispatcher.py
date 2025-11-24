@@ -21,7 +21,6 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
             if key != "url":
                 arguments[key] = normalize_path(value)
 
-
     try:
         # Buscar la función en el registro
         function_info = get_function(function_name)
@@ -40,8 +39,7 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
         if missing_args:
             return (
                 f"[ERROR] Faltan argumentos para '{function_name}': {missing_args}. "
-                f"Argumentos requeridos: {list(required_args)}"
-            )
+                f"Argumentos requeridos: {list(required_args)}")
 
         # Ejecutar la función real
         result = function_info['function'](**arguments)
@@ -51,7 +49,6 @@ def dispatch(function_name: str, arguments: dict, context_manager=None):
             context_manager.infer_update(function_name, arguments, result)
 
         return f"[OK] {result}"
-
 
     except FileNotFoundError as e:
         return f"[ERROR] Archivo no encontrado: {str(e)}"

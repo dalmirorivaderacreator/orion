@@ -1,10 +1,11 @@
+from functions.file_ops import create_file
+from functions.system_ops import get_capabilities
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # pylint: disable=wrong-import-position, import-error
-from functions.system_ops import get_capabilities
-from functions.file_ops import create_file
+
 
 class TestRefinements(unittest.TestCase):
     def test_get_capabilities(self):

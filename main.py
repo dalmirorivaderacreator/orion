@@ -5,6 +5,7 @@ from dispatcher import dispatch
 from logger import logger
 from functions import data_ops, file_ops, system_ops, email_ops
 from context import ContextManager
+from conversation import ConversationManager
 import database
 
 # Cargar variables de entorno
@@ -13,23 +14,26 @@ load_dotenv()
 print("=== Orion v0.1 conectado a Ollama ===")
 logger.info("Sistema ORION iniciado")
 
-from planner import HybridTaskPlanner
-from runner import execute_plan
-
-# ... imports ...
-
 def main():
     """Bucle principal de la CLI"""
     # Inicializar DB
     database.init_db()
     
     # Mostrar mensaje de bienvenida con historial
+    print("\n🌌 ORION - Asistente de Desarrollo Inteligente")
+    print("---------------------------------------------")
+    print("Ejemplos de uso:")
+    print("  • 'Hola' (Conversación)")
+    print("  • 'Creá proyecto web' (Automatización)")
+    print("  • 'Ayuda' (Ver más comandos)")
+    print("---------------------------------------------")
+    
     last_cmd = database.get_last_command()
     if last_cmd:
         print(f"👋 Bienvenido de nuevo. Tu último comando fue: '{last_cmd['command']}' ({last_cmd['timestamp']})")
     
     context = ContextManager()
-    planner = HybridTaskPlanner()
+    conversation = ConversationManager(context)
 
     while True:
         try:
@@ -39,37 +43,23 @@ def main():
                 extra={"extra_data": {"user_prompt": user_input}}
             )
 
-            # 1. Intentar Planificación Compleja (Hybrid Planner)
-            plan = planner.plan_task(user_input, context.context)
+            # Procesar input con el ConversationManager
+            response = conversation.process(user_input)
             
-            if plan:
-                logger.info("Plan complejo detectado: %s pasos", len(plan))
-                results = execute_plan(plan, context)
+            # Manejar respuesta según tipo
+            if response["type"] == "message":
+                print(f">>> ORION: {response['response']}")
                 
-                # Guardar en historial
-                database.add_history(user_input, f"Plan ejecutado ({len(plan)} pasos)")
-                continue
-
-            # 2. Flujo Normal (Simple) - Obtener intención del LLM
-            intent = ask_orion(user_input, context)
-
-            # 3. Ejecutar función (y actualizar contexto)
-            if intent["CALL"]:
-                logger.info("Ejecutando %s", intent['CALL'])
-                result = dispatch(intent["CALL"], intent["ARGS"], context)
-                print(f">>> ORION: {result}")
+            elif response["type"] == "plan":
+                print(f">>> ORION: {response['response']}")
+                # Los resultados del plan ya se imprimieron en el runner
                 
-                # Guardar en historial
-                database.add_history(user_input, result)
+            elif response["type"] == "action":
+                print(f">>> ORION: {response['result']}")
                 
-                logger.info("Ejecución exitosa")
-
-            else:
-                print("\n[ORION]: No se pudo interpretar la instrucción.")
-                logger.warning(
-                    "No se pudo interpretar instrucción",
-                    extra={"extra_data": {"prompt": user_input}}
-                )
+            elif response["type"] == "error":
+                print(f">>> ORION: {response['response']}")
+                logger.warning("No se pudo interpretar instrucción")
 
         except KeyboardInterrupt:
             logger.info("Sesión finalizada por usuario")

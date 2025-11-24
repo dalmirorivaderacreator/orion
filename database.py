@@ -7,9 +7,11 @@ from datetime import datetime
 
 DB_NAME = "orion.db"
 
+
 def get_connection():
     """Establece conexión con la base de datos."""
     return sqlite3.connect(DB_NAME)
+
 
 def init_db():
     """Inicializa las tablas de la base de datos si no existen."""
@@ -49,6 +51,7 @@ def init_db():
 
 # --- Operaciones de Contexto ---
 
+
 def save_context(context_data: dict):
     """Guarda el diccionario de contexto en la base de datos."""
     conn = get_connection()
@@ -63,6 +66,7 @@ def save_context(context_data: dict):
 
     conn.commit()
     conn.close()
+
 
 def load_context() -> dict:
     """Carga el contexto guardado."""
@@ -81,6 +85,7 @@ def load_context() -> dict:
 
 # --- Operaciones de Historial ---
 
+
 def add_history(command: str, result: str):
     """Registra un comando ejecutado en el historial."""
     conn = get_connection()
@@ -93,6 +98,7 @@ def add_history(command: str, result: str):
 
     conn.commit()
     conn.close()
+
 
 def get_last_command():
     """Obtiene el último comando ejecutado."""
@@ -110,7 +116,22 @@ def get_last_command():
         return {"command": row[0], "timestamp": row[1]}
     return None
 
+def get_history(limit=50):
+    """Obtiene el historial reciente de comandos."""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT command, result, timestamp FROM history
+        ORDER BY id DESC LIMIT ?
+    ''', (limit,))
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [{"command": r[0], "result": r[1], "timestamp": r[2]} for r in rows]
+
 # --- Operaciones de Preferencias ---
+
 
 def set_preference(key: str, value: str):
     """Guarda una preferencia de usuario."""
@@ -124,6 +145,7 @@ def set_preference(key: str, value: str):
 
     conn.commit()
     conn.close()
+
 
 def get_preference(key: str):
     """Obtiene una preferencia por su clave."""

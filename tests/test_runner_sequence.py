@@ -1,10 +1,11 @@
+import database
+from context import ContextManager
+from runner import execute_plan
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from runner import execute_plan
-from context import ContextManager
-import database
+
 
 class TestRunnerSequence(unittest.TestCase):
     def setUp(self):
@@ -23,15 +24,16 @@ class TestRunnerSequence(unittest.TestCase):
             {"CALL": "create_folder", "ARGS": {"path": "test_seq_folder"}},
             {"CALL": "list_files", "ARGS": {"path": "test_seq_folder"}}
         ]
-        
+
         results = execute_plan(plan, self.cm)
-        
+
         self.assertEqual(len(results), 2)
         self.assertIn("Carpeta creada", results[0])
         self.assertIn("Archivos en", results[1])
-        
+
         # Verificar que el contexto se actualizó
         self.assertEqual(self.cm.context["last_folder"], "test_seq_folder")
+
 
 if __name__ == '__main__':
     unittest.main()

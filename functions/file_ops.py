@@ -5,16 +5,17 @@ import os
 import requests
 from registry import register_function
 
+
 @register_function(
     name="create_folder",
     description="Crea una carpeta nueva y actualiza el contexto (last_folder)",
     argument_types={"path": "str"}
 )
-
 def create_folder(path):
     """Crea un directorio si no existe."""
     os.makedirs(path, exist_ok=True)
     return f"Carpeta creada: {path}"
+
 
 @register_function(
     name="list_files",
@@ -25,6 +26,7 @@ def list_files(path):
     """Lista los archivos en el directorio especificado."""
     files = os.listdir(path)
     return f"Archivos en {path}: {', '.join(files)}"
+
 
 @register_function(
     name="download_file",
@@ -43,6 +45,7 @@ def download_file(url, output_path):
 
     return f"Archivo descargado: {output_path} ({(len(response.content))} bytes)"
 
+
 @register_function(
     name="create_file",
     description="Crea un archivo con contenido opcional",
@@ -55,9 +58,6 @@ def create_file(path, content=""):
     dirname = os.path.dirname(path)
     if dirname:
         os.makedirs(dirname, exist_ok=True)
-
-
-
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)

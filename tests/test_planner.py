@@ -1,8 +1,9 @@
+from planner import HybridTaskPlanner
 import unittest
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from planner import HybridTaskPlanner
+
 
 class TestHybridTaskPlanner(unittest.TestCase):
     def setUp(self):
@@ -22,14 +23,16 @@ class TestHybridTaskPlanner(unittest.TestCase):
         self.assertEqual(len(plan), 2)
 
     def test_regex_folder_file(self):
-        plan = self.planner.plan_task("creá carpeta 'mi_app' y archivo 'app.js'", {})
+        plan = self.planner.plan_task(
+            "creá carpeta 'mi_app' y archivo 'app.js'", {})
         self.assertIsNotNone(plan)
         self.assertEqual(len(plan), 2)
         self.assertEqual(plan[0]["ARGS"]["path"], "mi_app")
         self.assertEqual(plan[1]["ARGS"]["path"], "mi_app/app.js")
 
     def test_regex_migration_version(self):
-        plan = self.planner.plan_task("migrá proyecto de Python 3.9 a 3.11", {})
+        plan = self.planner.plan_task(
+            "migrá proyecto de Python 3.9 a 3.11", {})
         self.assertIsNotNone(plan)
         self.assertEqual(len(plan), 2)
         self.assertIn("3.11", plan[1]["ARGS"]["content"])
@@ -48,6 +51,7 @@ class TestHybridTaskPlanner(unittest.TestCase):
     def test_no_plan(self):
         plan = self.planner.plan_task("hola mundo", {})
         self.assertIsNone(plan)
+
 
 if __name__ == '__main__':
     unittest.main()
