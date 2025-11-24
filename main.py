@@ -1,3 +1,9 @@
+"""
+ORION Main CLI Module
+
+Provides the command-line interface for ORION, an AI-powered development assistant.
+Handles user interaction, plugin initialization, and conversation management.
+"""
 # pylint: disable=unused-import
 from dotenv import load_dotenv
 from llm_client import ask_orion
@@ -24,7 +30,7 @@ def main():
     from core.plugins import PluginManager  # pylint: disable=import-outside-toplevel
     plugin_manager = PluginManager()
     loaded_count = plugin_manager.load_all_plugins()
-    
+
     if loaded_count > 0:
         loaded_plugins = list(plugin_manager.plugins.keys())
         logger.info("Plugins cargados: %s", loaded_plugins)
@@ -79,7 +85,7 @@ def main():
             logger.info("Sesión finalizada por usuario")
             print("\n¡Hasta luego!")
             break
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-exception-caught
             logger.error("Error crítico en loop principal: %s", e, exc_info=True)
             print(f"\n[ERROR]: {e}")
 
