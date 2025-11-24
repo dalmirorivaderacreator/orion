@@ -290,9 +290,8 @@ python -m unittest discover -s tests -p "test_*.py"
 ## 📚 Documentación
 
 - **[Guía de Desarrollo de Plugins](core/plugins/README.md)** - Crear plugins personalizados
-- **[Referencia API](docs/api.md)** - Documentación de funciones
-- **[Resumen de Arquitectura](docs/architecture.md)** - Diseño del sistema
-- **[Guía de Contribución](CONTRIBUTING.md)** - Flujo de desarrollo
+- **[Walkthrough de Implementación](.gemini/antigravity/brain/1845bd68-92a7-464c-be3f-71b221e71757/walkthrough.md)** - Recorrido completo de la Fase 6
+- **[Plan de Implementación](.gemini/antigravity/brain/1845bd68-92a7-464c-be3f-71b221e71757/implementation_plan.md)** - Diseño del sistema de plugins
 
 ---
 

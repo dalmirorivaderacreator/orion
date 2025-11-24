@@ -1,250 +1,249 @@
-# ORION Plugin System - Developer Guide
+# Sistema de Plugins de ORION - Guía para Desarrolladores
 
-## Overview
+## Descripción General
 
-The ORION Plugin System provides a modular architecture for extending ORION's functionality without modifying core code. Plugins can register new functions, add capabilities, and integrate with external services.
+El Sistema de Plugins de ORION proporciona una arquitectura modular para extender la funcionalidad de ORION sin modificar el código core. Los plugins pueden registrar nuevas funciones, agregar capacidades e integrarse con servicios externos.
 
-## Architecture
+## Arquitectura
 
-### Core Components
+### Componentes Core
 
-- **`PluginBase`**: Abstract base class that all plugins must inherit from
-- **`PluginManager`**: Central orchestration system for plugin lifecycle
-- **Function Registry**: Integration point with ORION's existing function system
+- **`PluginBase`**: Clase base abstracta que todos los plugins deben heredar
+- **`PluginManager`**: Sistema central de orquestación para el ciclo de vida de plugins
+- **Registro de Funciones**: Punto de integración con el sistema de funciones existente de ORION
 
-### Plugin Discovery
+### Descubrimiento de Plugins
 
-Plugins are automatically discovered from two locations:
-1. `core/plugins/` - Built-in plugins shipped with ORION
-2. `~/.orion/plugins/` - User-installed third-party plugins
+Los plugins se descubren automáticamente desde dos ubicaciones:
+1. `core/plugins/` - Plugins integrados que vienen con ORION
+2. `~/.orion/plugins/` - Plugins de terceros instalados por el usuario
 
-## Creating a Plugin
+## Crear un Plugin
 
-### Step 1: Create Plugin Directory
+### Paso 1: Crear Directorio del Plugin
 
 ```bash
-mkdir -p core/plugins/my_plugin
-cd core/plugins/my_plugin
+mkdir -p core/plugins/mi_plugin
+cd core/plugins/mi_plugin
 ```
 
-### Step 2: Create Package Structure
+### Paso 2: Crear Estructura de Paquete
 
-Create `__init__.py`:
+Crear `__init__.py`:
 ```python
 """
-My Plugin for ORION
+Mi Plugin para ORION
 """
-from core.plugins.my_plugin.plugin import MyPlugin
+from core.plugins.mi_plugin.plugin import MiPlugin
 
-__all__ = ['MyPlugin']
+__all__ = ['MiPlugin']
 ```
 
-### Step 3: Implement Plugin Class
+### Paso 3: Implementar Clase del Plugin
 
-Create `plugin.py`:
+Crear `plugin.py`:
 ```python
 """
-My Plugin Implementation
+Implementación de Mi Plugin
 """
 from core.plugins.plugin_base import PluginBase
 from registry import register_function
 
 
-class MyPlugin(PluginBase):
+class MiPlugin(PluginBase):
     """
-    My custom plugin for ORION.
+    Mi plugin personalizado para ORION.
     """
-    
+
     @property
     def name(self) -> str:
-        return "my_plugin"
-    
+        return "mi_plugin"
+
     @property
     def version(self) -> str:
         return "1.0.0"
-    
+
     @property
     def description(self) -> str:
-        return "Description of what my plugin does"
-    
+        return "Descripción de lo que hace mi plugin"
+
     @property
     def author(self) -> str:
-        return "Your Name"
-    
+        return "Tu Nombre"
+
     @property
     def dependencies(self) -> list:
-        """List required Python packages"""
-        return ["requests", "some-package"]
-    
+        """Lista de paquetes Python requeridos"""
+        return ["requests", "algun-paquete"]
+
     def initialize(self) -> bool:
         """
-        Initialize plugin resources.
-        Return True if successful, False otherwise.
+        Inicializa los recursos del plugin.
+        Retorna True si fue exitoso, False en caso contrario.
         """
         try:
-            # Check dependencies
-            import requests
-            
-            # Initialize resources
-            self.set_config("api_key", "your-api-key")
-            
+            # Verificar dependencias
+            import requests  # pylint: disable=import-outside-toplevel,unused-import
+
+            # Inicializar recursos
+            self.set_config("api_key", "tu-api-key")
+
             return True
         except ImportError:
-            self.error_state = "Missing dependencies"
+            self.error_state = "Dependencias faltantes"
             return False
-    
+
     def shutdown(self) -> None:
-        """Clean up resources when plugin is unloaded."""
-        # Close connections, save state, etc.
-        pass
-    
+        """Limpia recursos cuando el plugin se descarga."""
+        # Cerrar conexiones, guardar estado, etc.
+
     def register_functions(self) -> None:
-        """Register plugin functions with ORION."""
-        
+        """Registra funciones del plugin con ORION."""
+
         @register_function(
-            name="my_function",
-            description="Does something useful",
+            name="mi_funcion",
+            description="Hace algo útil",
             argument_types={
                 "input_path": "str",
                 "output_path": "str"
             }
         )
-        def my_function(input_path: str, output_path: str) -> str:
+        def mi_funcion(input_path: str, output_path: str) -> str:
             """
-            Function implementation.
-            
+            Implementación de la función.
+
             Args:
-                input_path: Input file path
-                output_path: Output file path
-                
+                input_path: Ruta del archivo de entrada
+                output_path: Ruta del archivo de salida
+
             Returns:
-                Status message
+                Mensaje de estado
             """
-            # Your implementation here
-            return f"Processed {input_path} -> {output_path}"
+            # Tu implementación aquí
+            return f"Procesado {input_path} -> {output_path}"
 ```
 
-### Step 4: Add Dependencies (Optional)
+### Paso 4: Agregar Dependencias (Opcional)
 
-Create `requirements.txt`:
+Crear `requirements.txt`:
 ```
 requests>=2.28.0
-some-package>=1.0.0
+algun-paquete>=1.0.0
 ```
 
-## Plugin Lifecycle
+## Ciclo de Vida del Plugin
 
-### Lifecycle Hooks
+### Hooks del Ciclo de Vida
 
-1. **`initialize()`**: Called once when plugin is loaded
-2. **`on_enable()`**: Called when plugin is enabled
-3. **`on_disable()`**: Called when plugin is disabled
-4. **`shutdown()`**: Called when plugin is unloaded
+1. **`initialize()`**: Llamado una vez cuando el plugin se carga
+2. **`on_enable()`**: Llamado cuando el plugin se habilita
+3. **`on_disable()`**: Llamado cuando el plugin se deshabilita
+4. **`shutdown()`**: Llamado cuando el plugin se descarga
 
-### Lifecycle Flow
+### Flujo del Ciclo de Vida
 
 ```
-Load Plugin → initialize() → register_functions() → on_enable()
-                                                         ↓
-                                                    [ACTIVE]
-                                                         ↓
+Cargar Plugin → initialize() → register_functions() → on_enable()
+                                                          ↓
+                                                      [ACTIVO]
+                                                          ↓
                                               on_disable() → shutdown()
 ```
 
-## API Reference
+## Referencia de API
 
-### PluginBase Methods
+### Métodos de PluginBase
 
-#### Configuration
-- `get_config(key, default=None)`: Get configuration value
-- `set_config(key, value)`: Set configuration value
+#### Configuración
+- `get_config(key, default=None)`: Obtener valor de configuración
+- `set_config(key, value)`: Establecer valor de configuración
 
-#### Status
-- `get_status()`: Get plugin status dictionary
-- `enabled`: Boolean property indicating if plugin is active
-- `loaded`: Boolean property indicating if plugin is loaded
-- `error_state`: String describing any error condition
+#### Estado
+- `get_status()`: Obtener diccionario de estado del plugin
+- `enabled`: Propiedad booleana indicando si el plugin está activo
+- `loaded`: Propiedad booleana indicando si el plugin está cargado
+- `error_state`: String describiendo cualquier condición de error
 
-### PluginManager Methods
+### Métodos de PluginManager
 
-#### Discovery & Loading
-- `discover_plugins()`: Find available plugins
-- `load_plugin(name)`: Load a specific plugin
-- `load_all_plugins()`: Load all discovered plugins
-- `unload_plugin(name)`: Unload a plugin
-- `reload_plugin(name)`: Hot-reload a plugin
+#### Descubrimiento y Carga
+- `discover_plugins()`: Encontrar plugins disponibles
+- `load_plugin(name)`: Cargar un plugin específico
+- `load_all_plugins()`: Cargar todos los plugins descubiertos
+- `unload_plugin(name)`: Descargar un plugin
+- `reload_plugin(name)`: Recargar un plugin en caliente
 
-#### Management
-- `get_plugin(name)`: Get plugin instance
-- `list_plugins()`: Get status of all plugins
-- `enable_plugin(name)`: Enable a plugin
-- `disable_plugin(name)`: Disable a plugin
+#### Gestión
+- `get_plugin(name)`: Obtener instancia del plugin
+- `list_plugins()`: Obtener estado de todos los plugins
+- `enable_plugin(name)`: Habilitar un plugin
+- `disable_plugin(name)`: Deshabilitar un plugin
 
-## Registering Functions
+## Registrar Funciones
 
-Functions registered by plugins become available to ORION's LLM dispatcher automatically.
+Las funciones registradas por plugins se vuelven disponibles automáticamente para el dispatcher LLM de ORION.
 
-### Function Registration Example
+### Ejemplo de Registro de Función
 
 ```python
 from registry import register_function
 
 @register_function(
-    name="process_data",
+    name="procesar_datos",
     description="Procesa datos de entrada y genera salida",
     argument_types={
         "input_path": "str",
-        "format": "str",
+        "formato": "str",
         "output_path": "str"
     }
 )
-def process_data(input_path: str, format: str, output_path: str) -> str:
-    """Process data with specified format."""
-    # Implementation
-    return f"Data processed: {output_path}"
+def procesar_datos(input_path: str, formato: str, output_path: str) -> str:
+    """Procesa datos con el formato especificado."""
+    # Implementación
+    return f"Datos procesados: {output_path}"
 ```
 
-### Best Practices
+### Mejores Prácticas
 
-1. **Clear Descriptions**: Use Spanish descriptions that clearly explain what the function does
-2. **Type Hints**: Always specify argument types in `argument_types`
-3. **Error Handling**: Return descriptive error messages, don't raise exceptions
-4. **Return Values**: Return human-readable status messages
-5. **Path Handling**: Use `os.path` for cross-platform compatibility
+1. **Descripciones Claras**: Usa descripciones en español que expliquen claramente qué hace la función
+2. **Type Hints**: Siempre especifica tipos de argumentos en `argument_types`
+3. **Manejo de Errores**: Retorna mensajes de error descriptivos, no lances excepciones
+4. **Valores de Retorno**: Retorna mensajes de estado legibles para humanos
+5. **Manejo de Rutas**: Usa `os.path` para compatibilidad multiplataforma
 
-## Example Plugins
+## Plugins de Ejemplo
 
 ### file_processor
-Batch file operations, duplicate detection, compression.
+Operaciones de archivos en lote, detección de duplicados, compresión.
 
-**Functions:**
-- `batch_rename_files(directory, pattern, replacement)`
-- `find_duplicates(directory)`
-- `compress_files(directory, output_archive)`
+**Funciones:**
+- `batch_rename_files(directory, pattern, replacement)` - Renombrado masivo
+- `find_duplicates(directory)` - Detección de duplicados por hash MD5
+- `compress_files(directory, output_archive)` - Compresión ZIP con estadísticas
 
 ### web_scraper
-Web scraping and content extraction.
+Web scraping y extracción de contenido.
 
-**Functions:**
-- `scrape_webpage(url, selector)`
-- `extract_links(url)`
-- `download_images(url, output_dir)`
+**Funciones:**
+- `scrape_webpage(url, selector)` - Extracción con selectores CSS
+- `extract_links(url)` - Descubrimiento de enlaces
+- `download_images(url, output_dir)` - Descarga de imágenes
 
-**Dependencies:** `beautifulsoup4`, `lxml`
+**Dependencias:** `beautifulsoup4`, `lxml`
 
 ### data_analyzer
-Advanced data analysis and visualization.
+Análisis de datos avanzado y visualización.
 
-**Functions:**
-- `generate_chart(csv_path, chart_type, output_path)`
-- `detect_outliers(csv_path, column)`
-- `correlation_matrix(csv_path, output_path)`
+**Funciones:**
+- `generate_chart(csv_path, chart_type, output_path)` - Gráficos (barras, líneas, dispersión, torta)
+- `detect_outliers(csv_path, column)` - Detección de outliers (método IQR)
+- `correlation_matrix(csv_path, output_path)` - Matriz de correlación con heatmaps
 
-**Dependencies:** `matplotlib`, `seaborn`
+**Dependencias:** `matplotlib`, `seaborn`
 
-## Testing Your Plugin
+## Probar Tu Plugin
 
-Create a test file in `tests/test_my_plugin.py`:
+Crear archivo de test en `tests/test_mi_plugin.py`:
 
 ```python
 import unittest
@@ -257,27 +256,27 @@ from core.plugins import PluginManager
 from registry import get_function
 
 
-class TestMyPlugin(unittest.TestCase):
+class TestMiPlugin(unittest.TestCase):
     def setUp(self):
         self.manager = PluginManager()
-        self.manager.load_plugin("my_plugin")
-    
-    def test_plugin_loaded(self):
-        plugin = self.manager.get_plugin("my_plugin")
+        self.manager.load_plugin("mi_plugin")
+
+    def test_plugin_cargado(self):
+        plugin = self.manager.get_plugin("mi_plugin")
         self.assertIsNotNone(plugin)
         self.assertTrue(plugin.enabled)
-    
-    def test_function_registered(self):
-        func = get_function("my_function")
+
+    def test_funcion_registrada(self):
+        func = get_function("mi_funcion")
         self.assertIsNotNone(func)
-    
-    def test_function_execution(self):
-        func = get_function("my_function")
+
+    def test_ejecucion_funcion(self):
+        func = get_function("mi_funcion")
         result = func['function'](
             input_path="test.txt",
             output_path="output.txt"
         )
-        self.assertIn("Processed", result)
+        self.assertIn("Procesado", result)
 
 
 if __name__ == '__main__':
@@ -286,100 +285,103 @@ if __name__ == '__main__':
 
 ## Debugging
 
-### Enable Debug Logging
+### Habilitar Logging de Debug
 
-Check `logs/orion.log` for plugin-related messages:
-- Plugin discovery
-- Loading success/failure
-- Function registration
-- Errors and exceptions
+Revisa `logs/orion.log` para mensajes relacionados con plugins:
+- Descubrimiento de plugins
+- Éxito/fallo de carga
+- Registro de funciones
+- Errores y excepciones
 
-### Common Issues
+### Problemas Comunes
 
-**Plugin not discovered:**
-- Ensure `__init__.py` and `plugin.py` exist
-- Check plugin directory is in search path
+**Plugin no descubierto:**
+- Asegúrate que `__init__.py` y `plugin.py` existan
+- Verifica que el directorio del plugin esté en la ruta de búsqueda
 
-**Plugin fails to load:**
-- Check `initialize()` returns `True`
-- Verify dependencies are installed
-- Check logs for error messages
+**Plugin falla al cargar:**
+- Verifica que `initialize()` retorne `True`
+- Confirma que las dependencias estén instaladas
+- Revisa los logs para mensajes de error
 
-**Functions not available:**
-- Ensure `register_functions()` is called
-- Check function names don't conflict
-- Verify `@register_function` decorator is used correctly
+**Funciones no disponibles:**
+- Asegúrate que `register_functions()` sea llamado
+- Verifica que los nombres de funciones no entren en conflicto
+- Confirma que el decorador `@register_function` se use correctamente
 
-## Distribution
+## Distribución
 
-### Packaging for Distribution
+### Empaquetar para Distribución
 
-1. Create plugin directory with all files
-2. Include `requirements.txt` for dependencies
-3. Add `README.md` with usage instructions
-4. Package as ZIP or distribute via Git
+1. Crear directorio del plugin con todos los archivos
+2. Incluir `requirements.txt` para dependencias
+3. Agregar `README.md` con instrucciones de uso
+4. Empaquetar como ZIP o distribuir vía Git
 
-### Installation by Users
+### Instalación por Usuarios
 
 ```bash
-# Clone to user plugin directory
+# Clonar al directorio de plugins del usuario
 cd ~/.orion/plugins
-git clone https://github.com/user/my-plugin.git
+git clone https://github.com/usuario/mi-plugin.git
 
-# Install dependencies
-cd my-plugin
+# Instalar dependencias
+cd mi-plugin
 pip install -r requirements.txt
 
-# Restart ORION
+# Reiniciar ORION
 ```
 
-## Advanced Topics
+## Temas Avanzados
 
-### Plugin Configuration
+### Configuración de Plugin
 
-Store persistent configuration:
+Almacenar configuración persistente:
 
 ```python
+import json
+import os
+
 def initialize(self):
-    # Load from config file
-    config_path = os.path.expanduser("~/.orion/my_plugin_config.json")
+    # Cargar desde archivo de configuración
+    config_path = os.path.expanduser("~/.orion/mi_plugin_config.json")
     if os.path.exists(config_path):
-        with open(config_path) as f:
+        with open(config_path, encoding='utf-8') as f:
             config = json.load(f)
             for key, value in config.items():
                 self.set_config(key, value)
     return True
 ```
 
-### Inter-Plugin Communication
+### Comunicación Entre Plugins
 
-Access other plugins via PluginManager:
+Acceder a otros plugins vía PluginManager:
 
 ```python
-def my_function(self):
-    # Get plugin manager instance
+def mi_funcion(self):
+    # Obtener instancia del plugin manager
     from core.plugins import PluginManager
     manager = PluginManager()
-    
-    # Access another plugin
-    other_plugin = manager.get_plugin("other_plugin")
-    if other_plugin and other_plugin.enabled:
-        # Use other plugin's functionality
+
+    # Acceder a otro plugin
+    otro_plugin = manager.get_plugin("otro_plugin")
+    if otro_plugin and otro_plugin.enabled:
+        # Usar funcionalidad del otro plugin
         pass
 ```
 
-### Hot Reload During Development
+### Hot Reload Durante Desarrollo
 
 ```python
-# In ORION console
+# En consola de ORION
 >>> from core.plugins import PluginManager
 >>> manager = PluginManager()
->>> manager.reload_plugin("my_plugin")
+>>> manager.reload_plugin("mi_plugin")
 ```
 
-## Support
+## Soporte
 
-For questions or issues:
-- Check the logs: `logs/orion.log`
-- Review example plugins in `core/plugins/`
-- Consult the test suite in `tests/test_plugin_system.py`
+Para preguntas o problemas:
+- Revisa los logs: `logs/orion.log`
+- Examina los plugins de ejemplo en `core/plugins/`
+- Consulta la suite de tests en `tests/test_plugin_system.py`
