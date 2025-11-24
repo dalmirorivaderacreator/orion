@@ -1,20 +1,22 @@
-import streamlit as st
-import pandas as pd
-import time
-from dotenv import load_dotenv
-from llm_client import ask_orion
-from dispatcher import dispatch
-from registry import get_available_functions
-from context import ContextManager
-from planner import HybridTaskPlanner
-from runner import execute_plan
-from logger import logger
-import database
+"""
+Main application file for ORION Enterprise.
+Streamlit-based dashboard for interacting with the assistant.
+"""
+import time  # Standard
+import streamlit as st  # Third-party
+import pandas as pd  # Third-party
+from dotenv import load_dotenv  # Third-party
 
-# Cargar variables de entorno
+# Local imports
+import database
+from context import ContextManager
+from conversation import ConversationManager
+from registry import get_available_functions
+
+# Load environment variables
 load_dotenv()
 
-# Configuración de la página
+# Page Configuration
 st.set_page_config(
     page_title="ORION Enterprise",
     page_icon="🌌",
@@ -22,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Estilos CSS
+# CSS Styles
 st.markdown("""
     <style>
     .stChatMessage {
@@ -49,12 +51,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ... imports ...
-from conversation import ConversationManager
-
-# ... setup ...
-
-# Inicializar estado
+# Initialize State
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "context" not in st.session_state:
@@ -62,7 +59,38 @@ if "context" not in st.session_state:
 if "conversation" not in st.session_state:
     st.session_state.conversation = ConversationManager(st.session_state.context)
 
-# ... sidebar ...
+# --- SIDEBAR ---
+with st.sidebar:
+    st.title("🌌 ORION Enterprise")
+    st.markdown("---")
+
+    # Metrics
+    history = database.get_history(100)
+    total_cmds = len(history)
+    SUCCESS_RATE = "100%"  # Placeholder
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Comandos", total_cmds)
+    with col2:
+        st.metric("Éxito", SUCCESS_RATE)
+
+    st.markdown("---")
+
+    # Active Context
+    st.subheader("🧠 Memoria Activa")
+    ctx = st.session_state.context.context
+    if ctx.get("last_folder"):
+        st.info(f"📂 Carpeta: `{ctx['last_folder']}`")
+    else:
+        st.warning("📂 Sin carpeta activa")
+
+    st.markdown("---")
+    with st.expander("🛠️ Funciones Disponibles"):
+        functions = get_available_functions()
+        for name, info in functions.items():
+            st.markdown(f"**{name}**")
+            st.caption(info['description'])
 
 # --- MAIN AREA ---
 tab1, tab2, tab3 = st.tabs(["💬 Chat & Ejecución", "📜 Historial", "⚙️ Cerebro"])
@@ -70,56 +98,52 @@ tab1, tab2, tab3 = st.tabs(["💬 Chat & Ejecución", "📜 Historial", "⚙️ 
 # TAB 1: CHAT
 with tab1:
     st.header("Centro de Comando")
-    st.info("💡 **Tip:** Escribe 'Ayuda' para ver una lista de comandos o 'Creá proyecto web' para empezar.")
-    
-    # Mostrar historial de chat
+    st.info(
+        "💡 **Tip:** Escribe 'Ayuda' para ver una lista de comandos "
+        "o 'Creá proyecto web' para empezar."
+    )
+
+    # Show chat history
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
             if "result" in message:
-                result = message["result"]
-                if isinstance(result, list): # Es un plan
+                result_val = message["result"]
+                if isinstance(result_val, list):  # Plan
                     with st.expander("✅ Ver Detalles del Plan"):
-                        for res in result:
+                        for res in result_val:
                             st.text(res)
-                elif isinstance(result, str) and result.startswith("[OK]"):
-                    st.success(result)
-                elif isinstance(result, str) and result.startswith("[ERROR]"):
-                    st.error(result)
+                elif isinstance(result_val, str) and result_val.startswith("[OK]"):
+                    st.success(result_val)
+                elif isinstance(result_val, str) and result_val.startswith("[ERROR]"):
+                    st.error(result_val)
                 else:
-                    st.code(result)
+                    st.code(result_val)
 
-    # Input Usuario
+    # User Input
     if prompt := st.chat_input("Escribe una instrucción o saluda..."):
-        # 1. Mostrar User Msg
+        # 1. Show User Msg
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # 2. Procesar con ConversationManager
+        # 2. Process with ConversationManager
         with st.chat_message("assistant"):
             with st.spinner("🧠 Procesando..."):
                 response = st.session_state.conversation.process(prompt)
-            
-            # A. Mensaje simple (Greeting/Chat/Question)
+
+            # A. Simple Message
             if response["type"] == "message":
                 st.markdown(response["response"])
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": response["response"]
                 })
-                
-            # B. Plan Complejo
+
+            # B. Complex Plan
             elif response["type"] == "plan":
-                st.info(f"📋 **Plan Maestro Detectado**")
-                
-                # Visualización de Ejecución (Re-implementada para usar los resultados ya obtenidos o re-ejecutar si el manager no devuelve stream)
-                # Nota: El manager actual ejecuta todo de una. Para visualización paso a paso en UI, 
-                # idealmente el manager debería devolver el plan y dejar que la UI lo ejecute, 
-                # O devolver los resultados. Aquí ya devuelve los resultados ejecutados.
-                # Para mantener la animación bonita, podríamos simularla o refactorizar.
-                # Por simplicidad ahora, mostramos los resultados.
-                
+                st.info("📋 **Plan Maestro Detectado**")
+
                 with st.expander("🚀 Resultados de Ejecución", expanded=True):
                     for res in response["result"]:
                         if str(res).startswith("[OK]"):
@@ -128,7 +152,7 @@ with tab1:
                             st.error(res)
                         else:
                             st.write(res)
-                            
+
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": response["response"],
@@ -136,25 +160,25 @@ with tab1:
                 })
                 st.rerun()
 
-            # C. Acción Simple
+            # C. Simple Action
             elif response["type"] == "action":
-                st.markdown(f"🎯 Acción Ejecutada")
-                result = response["result"]
-                
-                if str(result).startswith("[OK]"):
-                    st.success(result)
-                elif str(result).startswith("[ERROR]"):
-                    st.error(result)
+                st.markdown("🎯 Acción Ejecutada")
+                result_val = response["result"]
+
+                if str(result_val).startswith("[OK]"):
+                    st.success(result_val)
+                elif str(result_val).startswith("[ERROR]"):
+                    st.error(result_val)
                 else:
-                    st.markdown(result)
-                    
+                    st.markdown(result_val)
+
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": response["response"],
-                    "result": result
+                    "result": result_val
                 })
                 st.rerun()
-                
+
             # D. Error
             else:
                 st.warning(response["response"])
@@ -163,7 +187,7 @@ with tab1:
                     "content": response["response"]
                 })
 
-# TAB 2: HISTORIAL
+# TAB 2: HISTORY
 with tab2:
     st.header("📜 Historial de Operaciones")
     history_data = database.get_history(50)
@@ -173,17 +197,16 @@ with tab2:
     else:
         st.info("No hay historial aún.")
 
-# TAB 3: CEREBRO
+# TAB 3: BRAIN
 with tab3:
     st.header("⚙️ Estado del Sistema")
-    
+
     col1, col2 = st.columns(2)
-    
+
     with col1:
         st.subheader("Variables de Contexto")
         st.json(st.session_state.context.context)
-        
+
     with col2:
         st.subheader("Preferencias Guardadas")
-        # TODO: Agregar get_all_preferences en database.py si se quiere mostrar todo
         st.info("Las preferencias se cargan bajo demanda.")

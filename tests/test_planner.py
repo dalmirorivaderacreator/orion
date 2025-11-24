@@ -1,8 +1,12 @@
-from planner import HybridTaskPlanner
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+from planner import HybridTaskPlanner
 
 
 class TestHybridTaskPlanner(unittest.TestCase):

@@ -1,9 +1,12 @@
-import database
 import unittest
 import os
 import sys
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-# pylint: disable=wrong-import-position, import-error
+
+# Local imports
+import database
 
 
 class TestDatabase(unittest.TestCase):

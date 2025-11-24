@@ -553,3 +553,30 @@
 {"timestamp": "2025-11-24T06:39:35.067585", "level": "INFO", "message": "Input usuario: Ayuda", "module": "main", "function": "main", "user_prompt": "Ayuda"}
 {"timestamp": "2025-11-24T06:39:35.068580", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
 {"timestamp": "2025-11-24T06:40:13.697396", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.725819", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.735215", "level": "INFO", "message": "Intención detectada: chat", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.753738", "level": "INFO", "message": "Intención detectada: command", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.753738", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.753738", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.753738", "level": "INFO", "message": "Ejecutando plan complejo", "module": "conversation", "function": "_handle_command"}
+{"timestamp": "2025-11-24T06:58:12.779701", "level": "INFO", "message": "Intención detectada: greeting", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.790329", "level": "INFO", "message": "Intención detectada: question", "module": "conversation", "function": "process"}
+{"timestamp": "2025-11-24T06:58:12.908737", "level": "INFO", "message": "Planificando tarea para: 'hacé un backup de archivos'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.908737", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Planificando tarea para: 'hola mundo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "No se generó plan complejo, delegando a ejecución simple.", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Planificando tarea para: 'creá carpeta 'mi_app' y archivo 'app.js''", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto de Python 3.9 a 3.11'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Planificando tarea para: 'migrá proyecto'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909261", "level": "INFO", "message": "Plan generado por reglas: 2 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909785", "level": "INFO", "message": "Planificando tarea para: 'creá proyecto web'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909785", "level": "INFO", "message": "Plan generado por reglas: 3 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909785", "level": "INFO", "message": "Planificando tarea para: 'configurá entorno de desarrollo'", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.909785", "level": "INFO", "message": "Plan generado por reglas: 4 pasos", "module": "planner", "function": "plan_task"}
+{"timestamp": "2025-11-24T06:58:12.920318", "level": "INFO", "message": "Prompt pre-procesado: 'borrá ese archivo' -> 'borrá test_file.txt'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T06:58:12.920318", "level": "INFO", "message": "Prompt pre-procesado: 'procesá ese documento' -> 'procesá test_file.txt'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en esa carpeta' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'ponelo ahí' -> 'ponelo test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}
+{"timestamp": "2025-11-24T06:58:12.932721", "level": "INFO", "message": "Prompt pre-procesado: 'listá archivos en ese directorio' -> 'listá archivos en test_folder'", "module": "llm_client", "function": "_preprocess_prompt"}

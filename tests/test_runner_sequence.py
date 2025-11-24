@@ -1,10 +1,14 @@
-import database
-from context import ContextManager
-from runner import execute_plan
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+import database
+from context import ContextManager
+from runner import execute_plan
 
 
 class TestRunnerSequence(unittest.TestCase):

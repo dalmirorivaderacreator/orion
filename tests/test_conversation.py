@@ -1,10 +1,14 @@
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+import database
 from conversation import IntentClassifier, ConversationManager
 from context import ContextManager
-import database
 
 class TestConversation(unittest.TestCase):
     def setUp(self):
