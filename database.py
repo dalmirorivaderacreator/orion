@@ -116,6 +116,20 @@ def get_last_command():
         return {"command": row[0], "timestamp": row[1]}
     return None
 
+def get_history(limit=50):
+    """Obtiene el historial reciente de comandos."""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT command, result, timestamp FROM history
+        ORDER BY id DESC LIMIT ?
+    ''', (limit,))
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [{"command": r[0], "result": r[1], "timestamp": r[2]} for r in rows]
+
 # --- Operaciones de Preferencias ---
 
 
