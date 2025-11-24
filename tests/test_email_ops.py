@@ -1,10 +1,14 @@
-from functions.email_ops import send_email
 import unittest
 from unittest.mock import patch, MagicMock
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-# pylint: disable=wrong-import-position, import-error
+
+# Local imports
+# pylint: disable=wrong-import-position
+from functions.email_ops import send_email
 
 
 class TestEmailOps(unittest.TestCase):

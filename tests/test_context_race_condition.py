@@ -1,11 +1,14 @@
-from context import ContextManager
-import database
 import unittest
 import os
 import sys
-import time
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-# pylint: disable=wrong-import-position, import-error
+
+# Local imports
+# pylint: disable=wrong-import-position
+from context import ContextManager
+import database
 
 
 class TestContextRaceCondition(unittest.TestCase):

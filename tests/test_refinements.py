@@ -1,9 +1,14 @@
-from functions.file_ops import create_file
-from functions.system_ops import get_capabilities
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+# pylint: disable=wrong-import-position
+from functions.file_ops import create_file
+from functions.system_ops import get_capabilities
 # pylint: disable=wrong-import-position, import-error
 
 

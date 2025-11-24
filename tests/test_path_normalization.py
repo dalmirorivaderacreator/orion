@@ -1,10 +1,14 @@
-from dispatcher import dispatch
-from utils import normalize_path
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-# pylint: disable=wrong-import-position, import-error
+
+# Local imports
+# pylint: disable=wrong-import-position
+from dispatcher import dispatch
+from utils import normalize_path
 
 
 # Mock function for testing dispatch

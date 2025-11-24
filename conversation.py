@@ -34,14 +34,16 @@ class IntentClassifier:
 
         # 3. Question (Capabilities/Help)
         if re.search(
-            r"\b(qu[ée] (puedes|sabes|pod[ée]s) hacer|c[óo]mo funcionas|ayuda|help|funciones|cu[áa]les)\b",
+            r"\b(qu[ée] (puedes|sabes|pod[ée]s) hacer|c[óo]mo funcionas|"
+            r"ayuda|help|funciones|cu[áa]les)\b",
             text
         ):
             return "question"
 
         # 4. Command (Work)
         if re.search(
-            r"\b(cre[áa]|migr[áa]|list[áa]|borr[áa]|analiz[áa]|configur[áa]|backup|carpeta|archivo)\b",
+            r"\b(cre[áa]|migr[áa]|list[áa]|borr[áa]|analiz[áa]|"
+            r"configur[áa]|backup|carpeta|archivo)\b",
             text
         ):
             return "command"
@@ -108,7 +110,8 @@ class ConversationManager:
         if re.search(r"(qui[ée]n te cre[óo]|cre[óo])", user_input_lower):
             return {
                 "type": "message",
-                "response": "Me creó Dalmiro, un desarrollador apasionado por la automatización e IA."
+                "response": "Me creó Dalmiro, un desarrollador apasionado por "
+                            "la automatización e IA."
             }
 
         if re.search(r"c[óo]mo est[áa]s", user_input_lower):

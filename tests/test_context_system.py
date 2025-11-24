@@ -1,9 +1,13 @@
-from context import ContextManager
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-# pylint: disable=wrong-import-position, import-error
+
+# Local imports
+# pylint: disable=wrong-import-position
+from context import ContextManager
 
 
 class TestContextSystem(unittest.TestCase):

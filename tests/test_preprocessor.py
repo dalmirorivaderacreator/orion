@@ -1,10 +1,15 @@
-import database
-from context import ContextManager
-from llm_client import _preprocess_prompt
 import unittest
 import sys
 import os
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+# pylint: disable=wrong-import-position
+import database
+from context import ContextManager
+from llm_client import _preprocess_prompt
 
 
 class TestPreprocessor(unittest.TestCase):

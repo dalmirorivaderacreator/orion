@@ -1,13 +1,16 @@
+import unittest
+import sys
+import os
+
+# Add parent directory to path
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Local imports
+# pylint: disable=wrong-import-position
+import database
 from context import ContextManager
 from functions.system_ops import set_preference
 from utils import normalize_path
-import database
-import unittest
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
-# pylint: disable=wrong-import-position, import-error
 
 
 class TestPersistenceIntegration(unittest.TestCase):

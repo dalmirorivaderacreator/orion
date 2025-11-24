@@ -2,7 +2,6 @@
 Main application file for ORION Enterprise.
 Streamlit-based dashboard for interacting with the assistant.
 """
-import time  # Standard
 import streamlit as st  # Third-party
 import pandas as pd  # Third-party
 from dotenv import load_dotenv  # Third-party
@@ -12,6 +11,8 @@ import database
 from context import ContextManager
 from conversation import ConversationManager
 from registry import get_available_functions
+# pylint: disable=unused-import
+from functions import data_ops, file_ops, system_ops, email_ops
 
 # Load environment variables
 load_dotenv()

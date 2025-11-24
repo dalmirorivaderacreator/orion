@@ -1,7 +1,7 @@
 """
 Módulo de planificación de tareas híbrido (Reglas + LLM).
 """
-import logging
+import re
 from logger import logger
 
 
@@ -13,6 +13,7 @@ class HybridTaskPlanner:
     def __init__(self, llm_client=None):
         self.llm_client = llm_client
 
+    # pylint: disable=unused-argument
     def plan_task(self, user_input: str, context: dict) -> list:
         """
         Genera un plan de ejecución basado en el input del usuario.
@@ -40,13 +41,12 @@ class HybridTaskPlanner:
         logger.info("No se generó plan complejo, delegando a ejecución simple.")
         return None
 
+    # pylint: disable=too-many-return-statements
     def _rule_based_plan(self, user_input: str) -> list:
         """
         Detecta patrones conocidos y devuelve planes predefinidos.
         """
         prompt_lower = user_input.lower()
-
-        import re
 
         # Regla 1: "creá proyecto web"
         if "creá proyecto web" in prompt_lower or "crear proyecto web" in prompt_lower:
@@ -99,8 +99,12 @@ class HybridTaskPlanner:
         # Regla 5: "configurá entorno de desarrollo"
         if "configurá entorno de desarrollo" in prompt_lower:
             return [
-                {"CALL": "create_file", "ARGS": {"path": ".env", "content": "DEBUG=True\nENV=development"}},
-                {"CALL": "create_file", "ARGS": {"path": ".gitignore", "content": "*.pyc\n__pycache__/\n.env"}},
+                {"CALL": "create_file",
+                 "ARGS": {"path": ".env",
+                          "content": "DEBUG=True\nENV=development"}},
+                {"CALL": "create_file",
+                 "ARGS": {"path": ".gitignore",
+                          "content": "*.pyc\n__pycache__/\n.env"}},
                 {"CALL": "create_folder", "ARGS": {"path": "src"}},
                 {"CALL": "create_folder", "ARGS": {"path": "tests"}}
             ]

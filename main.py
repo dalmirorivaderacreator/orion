@@ -17,8 +17,9 @@ logger.info("Sistema ORION iniciado")
 def main():
     """Bucle principal de la CLI"""
     # Inicializar DB
+    # Inicializar DB
     database.init_db()
-    
+
     # Mostrar mensaje de bienvenida con historial
     print("\n🌌 ORION - Asistente de Desarrollo Inteligente")
     print("---------------------------------------------")
@@ -27,11 +28,12 @@ def main():
     print("  • 'Creá proyecto web' (Automatización)")
     print("  • 'Ayuda' (Ver más comandos)")
     print("---------------------------------------------")
-    
+
     last_cmd = database.get_last_command()
     if last_cmd:
-        print(f"👋 Bienvenido de nuevo. Tu último comando fue: '{last_cmd['command']}' ({last_cmd['timestamp']})")
-    
+        print(f"👋 Bienvenido de nuevo. Tu último comando fue: "
+              f"'{last_cmd['command']}' ({last_cmd['timestamp']})")
+
     context = ContextManager()
     conversation = ConversationManager(context)
 
@@ -45,18 +47,18 @@ def main():
 
             # Procesar input con el ConversationManager
             response = conversation.process(user_input)
-            
+
             # Manejar respuesta según tipo
             if response["type"] == "message":
                 print(f">>> ORION: {response['response']}")
-                
+
             elif response["type"] == "plan":
                 print(f">>> ORION: {response['response']}")
                 # Los resultados del plan ya se imprimieron en el runner
-                
+
             elif response["type"] == "action":
                 print(f">>> ORION: {response['result']}")
-                
+
             elif response["type"] == "error":
                 print(f">>> ORION: {response['response']}")
                 logger.warning("No se pudo interpretar instrucción")

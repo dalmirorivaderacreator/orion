@@ -6,6 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # Local imports
+# pylint: disable=wrong-import-position
 import database
 from context import ContextManager
 from runner import execute_plan
