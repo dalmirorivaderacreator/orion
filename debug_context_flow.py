@@ -1,9 +1,14 @@
-from registry import build_system_prompt
-from context import ContextManager
-import database
 import os
 import sys
+
+# Add parent directory to path
 sys.path.append(os.path.dirname(__file__))
+
+# Local imports
+# pylint: disable=wrong-import-position
+import database
+from registry import build_system_prompt
+from context import ContextManager
 
 
 def debug_flow():

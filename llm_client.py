@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import requests
 from registry import build_system_prompt
 from logger import logger
@@ -118,7 +119,6 @@ def _preprocess_prompt(user_prompt, context_manager):
     if not context_manager:
         return user_prompt
 
-    import re
     processed_prompt = user_prompt
     ctx = context_manager.context
 
