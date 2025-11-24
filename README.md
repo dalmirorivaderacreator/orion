@@ -289,9 +289,7 @@ python -m unittest discover -s tests -p "test_*.py"
 
 ## 📚 Documentación
 
-- **[Guía de Desarrollo de Plugins](core/plugins/README.md)** - Crear plugins personalizados
-- **[Walkthrough de Implementación](.gemini/antigravity/brain/1845bd68-92a7-464c-be3f-71b221e71757/walkthrough.md)** - Recorrido completo de la Fase 6
-- **[Plan de Implementación](.gemini/antigravity/brain/1845bd68-92a7-464c-be3f-71b221e71757/implementation_plan.md)** - Diseño del sistema de plugins
+**[Guía de Desarrollo de Plugins](core/plugins/README.md)** - Documentación completa para crear plugins personalizados en español. Incluye ejemplos, API reference, y mejores prácticas.
 
 ---
 
