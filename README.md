@@ -329,9 +329,9 @@ python -m unittest discover -s tests -p "test_*.py"
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dalmiro-rivadera-847854384)
 [![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dalmirorivaderacreator)
-[![Email](https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dalmirorivaderacreator@gmail.com)
+[![Email](https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com/mail/?view=cm&fs=1&to=dalmirorivaderacreator@gmail.com)
 
-**Portfolio**: [dalmirorivaderacreator.github.io](https://dalmirorivaderacreator.github.io)
+**Repositorio**: [github.com/dalmirorivaderacreator/orion](https://github.com/dalmirorivaderacreator/orion)
 
 ---
 
