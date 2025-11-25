@@ -327,9 +327,9 @@ python -m unittest discover -s tests -p "test_*.py"
 **Dalmiro Rivadera**  
 *Desarrollador Full-Stack | Ingeniero AI/ML*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dalmiro-rivadera)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dalmiro-rivadera-847854384)
 [![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dalmirorivaderacreator)
-[![Email](https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dalmiro.rivadera@example.com)
+[![Email](https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dalmirorivaderacreator@gmail.com)
 
 **Portfolio**: [dalmirorivaderacreator.github.io](https://dalmirorivaderacreator.github.io)
 
