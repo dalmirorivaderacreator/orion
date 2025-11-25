@@ -18,9 +18,7 @@
 ---
 
 ## 📹 Demo
-
-![ORION DEMO VERSION 4 gif](https://github.com/user-attachments/assets/2f339509-6919-4218-808f-2e7885bd2e90)
-
+![Demo Orion gif version completa](https://github.com/user-attachments/assets/920addde-2f31-498b-b0e5-dc4755625468)
 **Características Clave Demostradas:**
 - Ejecución de código desde lenguaje natural
 - Extensibilidad del sistema de plugins
