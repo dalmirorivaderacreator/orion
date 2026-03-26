@@ -46,7 +46,7 @@ ORION es un **asistente de desarrollo con IA listo para producción** que cierra
 
 ORION fue un proyecto que armé con mucha asistencia de IA, siguiendo tutoriales complejos. Aprendí a reconocer patrones de diseño y estructura de código, pero no podría defenderlo como propio porque no viví el proceso de desarrollo real.
 
-Hoy estoy haciendo las cosas diferente. Mi proyecto actual es **[PEF Analytics System](https://github.com/dalmirorivaderacreator/PEF)**, donde cada línea la escribo yo y cada error lo resuelvo yo.
+Hoy estoy haciendo las cosas diferente. Mi proyecto actual es **[PEF Analytics System](https://github.com/dalmirorivaderacreator/PEF-Analytics-System)**, donde cada línea la escribo yo y cada error lo resuelvo yo.
 
 👉 Te invito a conocer PEF.
 
