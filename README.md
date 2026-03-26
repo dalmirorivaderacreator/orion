@@ -42,6 +42,16 @@ ORION es un **asistente de desarrollo con IA listo para producción** que cierra
 
 ---
 
+## 📌 Sobre este proyecto
+
+ORION fue un proyecto que armé con mucha asistencia de IA, siguiendo tutoriales complejos. Aprendí a reconocer patrones de diseño y estructura de código, pero no podría defenderlo como propio porque no viví el proceso de desarrollo real.
+
+Hoy estoy haciendo las cosas diferente. Mi proyecto actual es **[PEF Analytics System](https://github.com/dalmirorivaderacreator/PEF)**, donde cada línea la escribo yo y cada error lo resuelvo yo.
+
+👉 Te invito a conocer PEF.
+
+---
+
 ## 🌟 Características Principales
 
 ### 🚀 Capacidades Core
@@ -289,41 +299,13 @@ python -m unittest discover -s tests -p "test_*.py"
 
 **[Guía de Desarrollo de Plugins](core/plugins/README.md)** - Documentación completa para crear plugins personalizados en español. Incluye ejemplos, API reference, y mejores prácticas.
 
----
-
-## 🎓 Highlights Técnicos para Reclutadores
-
-### Principios de Ingeniería de Software Demostrados
-
-✅ **Principios SOLID**
-- Responsabilidad Única: Organización modular de funciones
-- Abierto/Cerrado: Arquitectura de plugins para extensibilidad
-- Sustitución de Liskov: Herencia de clase base de plugins
-- Segregación de Interfaces: Interfaces de plugins enfocadas
-- Inversión de Dependencias: Patrón registry para bajo acoplamiento
-
-✅ **Patrones de Diseño**
-- Patrón Registry (registro de funciones)
-- Arquitectura de Plugins (extensibilidad)
-- Patrón Dispatcher (enrutamiento de comandos)
-- Patrón Builder (planificación de tareas)
-- Patrón Singleton (conexión a base de datos)
-
-✅ **Mejores Prácticas**
-- Type hints en toda la base de código
-- Docstrings exhaustivos
-- Logging estructurado (JSON)
-- Manejo y recuperación de errores
-- Testing unitario (98% de cobertura)
-- Pipeline CI/CD (GitHub Actions)
-- Enforcement de calidad de código (Pylint 10/10)
 
 ---
 
 ## 💼 Contacto
 
 **Dalmiro Rivadera**  
-*Desarrollador Full-Stack | Ingeniero AI/ML*
+
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dalmiro-rivadera-847854384)
 [![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dalmirorivaderacreator)
@@ -349,20 +331,11 @@ ORION demuestra:
 - ✅ **Extensibilidad** a través de arquitectura de plugins
 - ✅ **Aplicaciones del mundo real** en análisis de datos y automatización
 
-**Perfecto para roles en:**
-- Desarrollo Backend (Python)
-- Ingeniería AI/ML
-- DevOps & Automatización
-- Desarrollo Full-Stack
-- Arquitectura de Software
 
 ---
 
 <div align="center">
 
-**⭐ ¡Dale una estrella a este repo si te parece interesante!**
-
-*Construido con ❤️ por Dalmiro Rivadera*
 
 [⬆ Volver Arriba](#-orion)
 
