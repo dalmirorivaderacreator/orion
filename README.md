@@ -49,7 +49,7 @@ ORION fue un proyecto que armé con mucha asistencia de IA, siguiendo tutoriales
 Hoy estoy haciendo las cosas diferente. Mi proyecto actual es **[UGCAnalitica
 ]([https://github.com/dalmirorivaderacreator/UGCAnalitica])**, donde cada línea la escribo yo y cada error lo resuelvo yo.
 
-👉 Te invito a conocer UGCA.
+👉 Te invito a conocer UGCA. https://github.com/dalmirorivaderacreator/UGCAnalitica
 
 ---
 
